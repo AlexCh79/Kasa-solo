@@ -1,1 +1,48 @@
-/** Mixins **/
+@use "@/styles/variables" as *;
+
+/** Breakpoints **/
+
+// Ecran tablette
+@mixin tablet {
+  @media (min-with: $breakpoint-tablet) {
+    @context;
+  }
+}
+
+// Ecran ordinateur
+@mixin desktop {
+  @media (min-with: $breakpoint-desktop) {
+    @context;
+  }
+}
+
+/** Typographie */
+@mixin main-text {
+  font-size: $size-main;
+  font-weight: 400;
+}
+
+@mixin main-text-bold {
+  font-size: $size-main;
+  font-width: 500;
+}
+
+@mixin h1 {
+  font-size: $size-h1;
+  font-weight: 700;
+}
+
+@mixin h2 {
+  font-size: $size-h2;
+  font-weight: 500;
+}
+
+@mixin h3 {
+  font-size: $size-h3;
+  font-weight: 700;
+}
+
+@mixin h4 {
+  font-size: $size-h4;
+  font-weight: 500;
+}
