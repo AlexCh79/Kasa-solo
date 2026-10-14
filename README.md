@@ -7,6 +7,7 @@ Ce projet a été réalisé dans le cadre d'une formation avec OpenClassrooms (D
 1. [Prérequis](#prérequis)
 2. [Installation et démarrage](#installation-et-démarrage)
 3. [Frameworks et librairies utilisées](#frameworks-et-librairies-utilisées)
+4. [Arborescence](arborescence)
 
 ## Prérequis
 
@@ -55,3 +56,24 @@ L'adresse sur le serveur local est http://localhost:3001/
 | Prettier   | 3.9.10  | Formatage du code selon les normes et bonnes pratiques |
 | TypeScript | 5       | Sur-ensemble JavaScript                                |
 | Sass       | 1.105.1 | Préprocesseur CSS                                      |
+
+## Arborescence
+
+Kasa/
+|_ back-end/ (Back-end, voir le fichier README.md du dossier back-end)
+|_ front-end/ (Front-end du site et objet du projet Kasa)
+| |_ app/ (Pages du site)
+| | |_ layout.tsx (Layout du site)
+| | |_ page.tsx (Page d'accueil du site)
+| |_ components/ (Composants réutilisables)
+| |_ lib/ (Liaison API)
+| | |_ api.ts (Fonction de requête de l'API)
+| | |_ users.ts (Calls de l'API pour les utilisateurs publics)
+| |_ public/ (Icones et images du site)
+| | |_ uploads/ (Ignoré par git pour stocker les images uploadées par les utilisateurs)
+| |_ styles/ (Feuilles de styles du site)
+| | |_ globals.scss (Styles partagés par l'ensemble des pages du site)
+| | |_ _variables.scss (variables dédiées aux styles)
+| | |_ _mixins.scss (mixins réutilisables dans les styles)
+| |_ types/ (Typages de données)
+| | |\_ User.ts (type utilisateur public)

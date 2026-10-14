@@ -26,7 +26,10 @@ export const fetchApi = async (path: string, request?: RequestInit) => {
     headers,
   });
 
-  // Message d'erreur selon le statut
+  // Message d'erreur par défaut selon le statut
+  if (response.status === 400) {
+    throw new Error("Des données sont manquantes pour continuer.");
+  }
   if (response.status === 401) {
     throw new Error("Vous devez être connecté pour accéder à cette fonctionnalité.");
   }
@@ -34,7 +37,7 @@ export const fetchApi = async (path: string, request?: RequestInit) => {
     throw new Error("Accès interdit ! Vous devez être administrateur pour continuer.");
   }
   if (response.status === 404) {
-    throw new Error("Aucune données trouvées.");
+    throw new Error("Aucune donnée trouvée.");
   }
   if (response.status === 409) {
     throw new Error("La donnée que vous souhaitez enregistrer existe déjà.");

@@ -42,7 +42,7 @@ export async function getUserById(id: number): Promise<UserData> {
  * @param id - id de l'utilisateur à modifier
  * @returns utilisateur modifié
  */
-export async function updateUser({ id, name, picture, role }: UserData): Promise<UserPublic> {
+export async function updateUser({ id, name, picture, role }: UserData): Promise<UserData> {
   const response = await fetchApi(`/api/users/${id}`, {
     method: "PATCH",
     body: JSON.stringify({ name, picture, role }),
