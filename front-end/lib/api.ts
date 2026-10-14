@@ -26,7 +26,21 @@ export const fetchApi = async (path: string, request?: RequestInit) => {
     headers,
   });
 
-  // Message d'erreur si pas de réponse
+  // Message d'erreur selon le statut
+  if (response.status === 401) {
+    throw new Error("Vous devez être connecté pour accéder à cette fonctionnalité.");
+  }
+  if (response.status === 403) {
+    throw new Error("Accès interdit ! Vous devez être administrateur pour continuer.");
+  }
+  if (response.status === 404) {
+    throw new Error("Aucune données trouvées.");
+  }
+  if (response.status === 409) {
+    throw new Error("La donnée que vous souhaitez enregistrer existe déjà.");
+  }
+
+  // Message d'erreur si pas de réponse (ou statut de l'erreur non prévu)
   if (!response.ok) {
     throw new Error("Oups, une erreur est survenue dans la liaison avec le serveur.");
   }

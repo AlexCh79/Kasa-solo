@@ -26,3 +26,26 @@ export async function createUser({ name, picture, role }: UserPublic): Promise<U
 
   return response;
 }
+
+/**
+ * Récupération du profil d'un utilisateur par son id
+ * @param id - id de l'utilisateur à rechercher
+ * @returns utilisateur recherché
+ */
+export async function getUserById(id: number): Promise<UserData> {
+  const response = await fetchApi(`/api/users/${id}`);
+  return response;
+}
+
+/**
+ * Mise à jour d'un utilisateur public
+ * @param id - id de l'utilisateur à modifier
+ * @returns utilisateur modifié
+ */
+export async function updateUser({ id, name, picture, role }: UserData): Promise<UserPublic> {
+  const response = await fetchApi(`/api/users/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify({ name, picture, role }),
+  });
+  return response;
+}
