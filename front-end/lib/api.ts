@@ -26,6 +26,11 @@ export const fetchApi = async (path: string, request?: RequestInit) => {
     headers,
   });
 
+  // Renvoi avant lecture de la response pour ne pas renvoyer de body vide
+  if (response.status === 204) {
+    return;
+  }
+
   // Message d'erreur par défaut selon le statut
   if (response.status === 400) {
     throw new Error("Des données sont manquantes pour continuer.");
