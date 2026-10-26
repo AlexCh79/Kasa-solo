@@ -27,7 +27,7 @@ export async function removeFavorite(id: string) {
  * @param userId - id de l'utilisateur connecté
  * @returns la liste des favoris enregistrés de l'utilisateur connecté
  */
-export async function getFavorites(userId: number): Promise<PropertyBase[]> {
+export async function getFavoritesApi(userId: number): Promise<PropertyBase[]> {
   const response: ApiProperty[] = await fetchApi(`/api/users/${userId}/favorites`);
   return response.map(toProperty);
 }
