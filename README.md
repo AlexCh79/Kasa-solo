@@ -7,7 +7,8 @@ Ce projet a été réalisé dans le cadre d'une formation avec OpenClassrooms (D
 1. [Prérequis](#prérequis)
 2. [Installation et démarrage](#installation-et-démarrage)
 3. [Frameworks et librairies utilisées](#frameworks-et-librairies-utilisées)
-4. [Arborescence](arborescence)
+4. [Mises à jour de sécurité - oct 2026](#mises_à_jour_de_sécurité_-_oct_2026)
+5. [Arborescence](arborescence)
 
 ## Prérequis
 
@@ -56,6 +57,11 @@ L'adresse sur le serveur local est http://localhost:3001/
 | Prettier   | 3.9.10  | Formatage du code selon les normes et bonnes pratiques |
 | TypeScript | 5       | Sur-ensemble JavaScript                                |
 | Sass       | 1.105.1 | Préprocesseur CSS                                      |
+
+## Mises à jour de sécurité - oct 2026
+
+Suite à la découverte de failles de sécurité importante sur PHP et Node.js en octobre 2026, une mise à jour de Node a été nécessaire alors que l'élaboration était en cours.
+Le projet a donc démarré sur la version Node.js 24.19.0 et continue sur la version Node.js 24.22.1.
 
 ## Arborescence
 
