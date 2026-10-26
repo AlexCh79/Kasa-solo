@@ -11,7 +11,9 @@ export const fetchApi = async (path: string, request?: RequestInit) => {
   const API_URL = process.env.API_URL;
 
   const headers = new Headers(request?.headers);
-  headers.set("Content-Type", "application/json");
+  if (!(request?.body instanceof FormData)) {
+    headers.set("Content-Type", "application/json");
+  }
 
   //Récupération du token
   const token = (await cookies()).get("token")?.value;
