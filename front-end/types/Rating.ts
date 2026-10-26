@@ -8,7 +8,7 @@ export interface Rating {
   id: number;
   score: number;
   comment: string | null;
-  created_at: string;
+  createdAt: string;
   user: PropertyHost;
 }
 
@@ -16,7 +16,7 @@ export interface Rating {
  * Typage d'une note à sa création
  */
 export interface RatingCreate {
-  user_id: number;
+  userId: number;
   score: number;
   comment?: string;
 }
@@ -25,7 +25,7 @@ export interface RatingCreate {
  * Typage du résumé des notes
  */
 export interface RatingsSummary {
-  rating_avg: number;
-  ratings_count: number;
+  ratingAvg: number;
+  ratingsCount: number;
   ratings: Rating[];
 }
