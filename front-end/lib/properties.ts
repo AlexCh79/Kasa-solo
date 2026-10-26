@@ -10,7 +10,7 @@ import type {
 /**
  * Logement tel que renvoyé par l'API (snake_case)
  */
-interface ApiProperty {
+export interface ApiProperty {
   id: string;
   slug: string;
   title: string;
@@ -35,7 +35,7 @@ interface ApiPropertyDetail extends ApiProperty {
 /**
  * Conversion des données API (snake_case) en version camelCase
  */
-function toProperty({
+export function toProperty({
   price_per_night,
   rating_avg,
   ratings_count,
