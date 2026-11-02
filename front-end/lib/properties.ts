@@ -6,6 +6,7 @@ import type {
   PropertyUpdate,
   PropertyHost,
 } from "@/types/Property";
+import { toAbsoluteUrl } from "@/utils/urls";
 
 /**
  * Logement tel que renvoyé par l'API (snake_case)
@@ -39,6 +40,8 @@ export function toProperty({
   price_per_night,
   rating_avg,
   ratings_count,
+  cover,
+  host,
   ...rest
 }: ApiProperty): PropertyBase {
   return {
@@ -46,6 +49,11 @@ export function toProperty({
     pricePerNight: price_per_night,
     ratingAvg: rating_avg,
     ratingCount: ratings_count,
+    cover: cover ? toAbsoluteUrl(cover) : null,
+    host: {
+      ...host,
+      picture: host.picture ? toAbsoluteUrl(host.picture) : null,
+    },
   };
 }
 
@@ -55,7 +63,7 @@ export function toProperty({
 function toPropertyDetail(api: ApiPropertyDetail): PropertyDetail {
   return {
     ...toProperty(api),
-    pictures: api.pictures,
+    pictures: api.pictures.map(toAbsoluteUrl),
     equipments: api.equipments,
     tags: api.tags,
   };

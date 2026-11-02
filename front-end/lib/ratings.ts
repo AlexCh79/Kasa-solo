@@ -1,6 +1,7 @@
 import { fetchApi } from "./api";
 import { Rating, RatingCreate, RatingsSummary } from "@/types/Rating";
 import type { PropertyHost } from "@/types/Property";
+import { toAbsoluteUrl } from "@/utils/urls";
 
 /**
  * Typage de notes de logement selon l'API
@@ -61,9 +62,10 @@ export async function addRating(id: string, data: RatingCreate): Promise<Ratings
  * Conversion des données API (snake_case) en version camelCase
  * Précision du fuseau horaire du created_at
  */
-function toRating({ created_at, ...rest }: RatingAPI): Rating {
+function toRating({ created_at, user, ...rest }: RatingAPI): Rating {
   return {
     ...rest,
+    user: user.picture ? { ...user, picture: toAbsoluteUrl(user.picture) } : user,
     createdAt: created_at.replace(" ", "T") + "Z",
   };
 }
