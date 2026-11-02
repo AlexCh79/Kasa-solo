@@ -16,15 +16,11 @@ $secondary-color: $grey-light;
   max-width: 100%;
   font-size: $size-main;
   font-weight: 500;
+  text-decoration: none;
   &:hover,
-  :focus-visible {
+  &:focus-visible {
     cursor: pointer;
     background-color: $dark-orange;
-  }
-  &__link,
-  &__link:visited {
-    color: $white;
-    text-decoration: none;
   }
 }
 
@@ -35,7 +31,7 @@ $secondary-color: $grey-light;
   background-color: $secondary-color;
   color: $black;
   &:hover,
-  :focus-visible {
+  &:focus-visible {
     background-color: $grey-dark;
   }
 }

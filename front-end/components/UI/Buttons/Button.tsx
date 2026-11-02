@@ -10,16 +10,23 @@ export default function Button({
   label: string;
   onClick?: () => void;
   variant: "primary" | "secondary";
-  href: string;
+  href?: string;
 }) {
-  return (
-    <button
+  return href ? (
+    <Link
+      href={href}
       className={`${styles.button} ${variant === "secondary" ? styles.secondary : styles.primary}`}
       onClick={onClick}
     >
-      <Link href={href} className={styles.button__link}>
-        {label}
-      </Link>
+      {label}
+    </Link>
+  ) : (
+    <button
+      type="button"
+      className={`${styles.button} ${variant === "secondary" ? styles.secondary : styles.primary}`}
+      onClick={onClick}
+    >
+      {label}
     </button>
   );
 }
