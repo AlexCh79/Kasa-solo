@@ -4,6 +4,9 @@ import Link from "next/link";
 import { HeartIcon, ProfileIcon, MessengerIcon } from "@/components/UI/Icons/Icons";
 import MobileMenu from "./MobileMenu";
 
+/**
+ * Header du site
+ */
 export default function Header() {
   return (
     <>

@@ -1,6 +1,13 @@
 import Link from "next/link";
 import styles from "./Button.module.scss";
 
+/**
+ * Bouton du site
+ * @param label - nom que doit afficher le bouton
+ * @param onClick - facultatif, action déclenchée au clic
+ * @param variant - couleur de fond orange foncé (primary) ou gris (secondary)
+ * @param href - facultatif, adresse vers laquelle renvoie le bouton
+ */
 export default function Button({
   label,
   onClick,

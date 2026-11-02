@@ -5,6 +5,9 @@ import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 
+/**
+ * Menu Mobile
+ */
 export default function MobileMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = (isOpen: boolean) => {
