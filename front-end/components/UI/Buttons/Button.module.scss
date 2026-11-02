@@ -1,0 +1,41 @@
+@use "@/styles/mixins" as *;
+@use "@/styles/variables" as *;
+
+$primary-color: $main-red;
+$secondary-color: $grey-light;
+
+.button {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  border: none;
+  color: $white;
+  padding: 8px 32px;
+  border-radius: 10px;
+  width: fit-content;
+  max-width: 100%;
+  font-size: $size-main;
+  font-weight: 500;
+  &:hover,
+  :focus-visible {
+    cursor: pointer;
+    background-color: $dark-orange;
+  }
+  &__link,
+  &__link:visited {
+    color: $white;
+    text-decoration: none;
+  }
+}
+
+.primary {
+  background-color: $primary-color;
+}
+.secondary {
+  background-color: $secondary-color;
+  color: $black;
+  &:hover,
+  :focus-visible {
+    background-color: $grey-dark;
+  }
+}

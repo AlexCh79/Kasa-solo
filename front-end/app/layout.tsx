@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Header from "@/components/UI/Header/Header";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import "@/styles/globals.scss";
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <a href="#main-content" className="skip-link">
             Aller au contenu principal
           </a>
+          <Header />
           <main id="main-content">{children}</main>
         </FavoritesProvider>
       </body>
