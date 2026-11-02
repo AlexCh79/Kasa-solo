@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "@/components/UI/Header/Header";
+import Footer from "@/components/UI/Footer/Footer";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 import "@/styles/globals.scss";
 
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           </a>
           <Header />
           <main id="main-content">{children}</main>
+          <Footer />
         </FavoritesProvider>
       </body>
     </html>
