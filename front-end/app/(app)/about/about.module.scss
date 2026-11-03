@@ -1,0 +1,118 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 51px;
+  padding: 0 16px 80px 16px;
+  margin-top: 40px;
+  &__introducing {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 0 8px;
+  }
+  &__titleContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    text-align: center;
+  }
+  &__title {
+    color: $main-red;
+    @include h1;
+  }
+  &__subtitle {
+    color: $black;
+    @include main-text;
+  }
+  &__coverContainer {
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 342/458;
+    max-width: 342px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: $white;
+    @include tablet {
+      max-width: 594px;
+      aspect-ratio: 594/458;
+    }
+    @include desktop {
+      max-width: 1115px;
+      aspect-ratio: 1115/458;
+    }
+  }
+  &__cover {
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.mission {
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-areas: "mission" "picture" "slogan";
+  gap: 16px;
+  width: 100%;
+  max-width: 1116px;
+  @include desktop {
+    grid-template-rows: 1fr auto auto 1fr;
+    justify-items: start;
+    grid-template-columns: 1fr 494px;
+    grid-template-areas: ". picture " "mission picture" "slogan picture" ". picture";
+  }
+  &__listContainer {
+    grid-area: mission;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  &__title {
+    color: $main-red;
+    font-size: $size-h3;
+    font-weight: 700;
+  }
+  &__list {
+    width: 100%;
+    font-size: $size-main;
+    font-weight: 400;
+    color: $black;
+    text-align: left;
+    list-style-position: inside;
+    line-height: 2;
+    padding-bottom: 20px;
+  }
+  &__coverContainer {
+    grid-area: picture;
+    position: relative;
+    overflow: hidden;
+    background-color: $white;
+    width: 100%;
+    max-width: 358px;
+    aspect-ratio: 358/458;
+    border-radius: 20px;
+    @include tablet {
+      max-width: 494px;
+      aspect-ratio: 494/458;
+    }
+  }
+  &__cover {
+    object-fit: cover;
+    object-position: center;
+  }
+  &__subtitle {
+    grid-area: slogan;
+    color: $main-red;
+    font-size: $size-h3;
+    font-weight: 500;
+  }
+}
