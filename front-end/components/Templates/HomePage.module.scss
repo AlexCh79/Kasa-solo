@@ -1,0 +1,150 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.homePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 16px;
+  gap: 51px;
+  margin-top: 40px;
+  &__introducing {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 0 8px;
+    width: 100%;
+  }
+  &__titleSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+    width: 100%;
+  }
+  &__title {
+    font-size: $size-h1;
+    font-weight: 700;
+    color: $main-red;
+  }
+  &__subtitle {
+    font-size: $size-main;
+    font-weight: 400;
+    color: $black;
+  }
+  &__coverContainer {
+    width: 100%;
+    max-width: 342px;
+    position: relative;
+    aspect-ratio: 342/458;
+    background-color: $white;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden;
+    @include tablet {
+      max-width: 594px;
+      aspect-ratio: 594/458;
+    }
+    @include desktop {
+      max-width: 1115px;
+      aspect-ratio: 1115/458;
+    }
+  }
+  &__cover {
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.cards__container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  align-items: center;
+  @include tablet {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 24px;
+    row-gap: 24px;
+  }
+  @include desktop {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 1113px;
+  }
+}
+
+.howItWorks {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background-color: $white;
+  gap: 40px;
+  padding: 40px 8px;
+  &__titleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+    width: 100%;
+  }
+  &__title {
+    font-size: $size-h2;
+    font-weight: 600;
+    color: $black;
+  }
+  &__subtitle {
+    font-size: $size-main;
+    font-weight: 400;
+    color: $black;
+    @include desktop {
+      max-width: 680px;
+    }
+  }
+  &__cardsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    @include tablet {
+      flex-direction: row;
+      justify-content: center;
+    }
+  }
+  &__card {
+    background-color: $main-red;
+    border: 1px solid $grey-light;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 44px 22px;
+    color: $white;
+    gap: 17px;
+    width: 100%;
+    min-height: 199px;
+    @include tablet {
+      max-width: 270px;
+    }
+  }
+  &__cardTitle {
+    font-size: $size-h3;
+    font-weight: 500;
+  }
+  &__cardSubtitle {
+    font-size: $size-main;
+    font-weight: 400;
+  }
+}

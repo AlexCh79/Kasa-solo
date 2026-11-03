@@ -1,14 +1,18 @@
 import styles from "./PropertyCard.module.scss";
-import type { PropertyBase } from "@/types/Property";
 import FavButton from "@/components/UI/Buttons/FavoriteButton/FavButton";
 import Image from "next/image";
 import Link from "next/link";
+import { PropertyBase } from "@/types/Property";
+
+interface PropertyCardProps {
+  property: PropertyBase;
+}
 
 /**
  * Carte de présentation d'un logement
- * @param property - Propriété à afficher sur la carte
+ * @param property - propriété à afficher sur la carte
  */
-export default function PropertyCard(property: PropertyBase) {
+export default function PropertyCard({ property }: PropertyCardProps) {
   return (
     <article className={styles.card}>
       <Link href={`/properties/${property.id}`} className={styles.card__link}>
@@ -23,7 +27,7 @@ export default function PropertyCard(property: PropertyBase) {
         </div>
         <div className={styles.card__detailContainer}>
           <div className={styles.card__textContainer}>
-            <h3 className={styles.card__title}>{property.title}</h3>
+            <h2 className={styles.card__title}>{property.title}</h2>
             <span className={styles.card__subtitle}>
               {property.location ? property.location : null}
             </span>
