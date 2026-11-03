@@ -70,7 +70,7 @@
   align-items: center;
   @include tablet {
     display: grid;
-    justify-content: center;
+    justify-items: center;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 24px;
     row-gap: 24px;

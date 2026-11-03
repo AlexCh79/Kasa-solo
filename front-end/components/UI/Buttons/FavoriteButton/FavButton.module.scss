@@ -18,10 +18,12 @@
   cursor: pointer;
   transition: color 300ms ease-out;
   &:hover {
-    color: $main-red;
+    color: $black;
+    background-color: $main-red;
   }
 }
 
 .active {
-  color: $main-red;
+  color: $white;
+  background-color: $main-red;
 }

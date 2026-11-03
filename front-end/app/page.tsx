@@ -1,4 +1,4 @@
-import HomePage from "@/components/Templates/HomePage";
+import HomePage from "@/components/Templates/HomePage/HomePage";
 import type { Metadata } from "next";
 
 /**
