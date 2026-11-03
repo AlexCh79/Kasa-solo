@@ -23,7 +23,7 @@ export default async function HomePage() {
             alt=""
             fill
             preload
-            sizes="(min-width: 1280px) 1115px, 342px"
+            sizes="(min-width: 1280px) 1115px, (min-width: 768px) 594px; 342px"
           />
         </div>
       </section>
