@@ -3,6 +3,9 @@ import PropertyCard from "@/components/UI/PropertyCard/PropertyCard";
 import Image from "next/image";
 import { getProperties } from "@/lib/properties";
 
+/**
+ * Page d'accueil du site
+ */
 export default async function HomePage() {
   const properties = await getProperties();
 
@@ -23,7 +26,7 @@ export default async function HomePage() {
             alt=""
             fill
             preload
-            sizes="(min-width: 1280px) 1115px, (min-width: 768px) 594px; 342px"
+            sizes="(min-width: 1280px) 1115px, (min-width: 768px) 594px, 342px"
           />
         </div>
       </section>

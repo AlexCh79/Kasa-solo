@@ -64,8 +64,37 @@ main {
   }
 }
 
-/* Message d'erreur */
+/* Styles pour la page d'erreur */
 .error {
-  color: $main-red;
-  @include h3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 40px auto;
+  gap: 40px;
+  width: 100%;
+  max-width: 342px;
+  text-align: center;
+  &__titleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 183px;
+  }
+  &__title {
+    font-size: 6.25rem; // 100 px
+    font-weight: 900;
+    color: $main-red;
+  }
+  &__subtitle {
+    font-size: $size-main;
+    font-weight: 400;
+    color: $black;
+  }
+  &__actions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    width: 200px;
+  }
 }
