@@ -1,0 +1,67 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.property {
+  padding: 10px 16px 80px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  gap: 10px;
+  @include desktop {
+    margin-top: 40px;
+  }
+  &__description {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    padding: 24px;
+    border: 1px solid $grey-light;
+    border-radius: 10px;
+    width: 100%;
+    background-color: $white;
+  }
+  &__descriptionText {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+    width: 100%;
+  }
+  &__descriptionTitleContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+  }
+  &__descriptionTitle {
+    font-size: $size-h2;
+    color: $black;
+    font-weight: 500;
+  }
+  &__descriptionLocationContainer {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    color: $grey-dark;
+    @include main-text;
+  }
+  &__equipments {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+  }
+  &__equipmentsTitle {
+    @include main-text-bold;
+    color: $black;
+  }
+}
+
+.buttonZone {
+  width: 189px;
+}
