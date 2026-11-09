@@ -1,0 +1,62 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.carrousel {
+  display: grid;
+  grid-template-areas: "main" "vignet";
+  width: 100%;
+  row-gap: 10px;
+  column-gap: 10px;
+  @include desktop {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "main vignet";
+  }
+  &__mainWrapper {
+    grid-area: main;
+    position: relative;
+    aspect-ratio: 358/422;
+    @include desktop {
+      aspect-ratio: 303/357;
+    }
+  }
+  &__main {
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+  }
+  &__vignetContainer {
+    display: grid;
+    grid-area: vignet;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+    row-gap: 8px;
+    column-gap: 8px;
+    @include desktop {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, auto);
+    }
+  }
+  &__vignetWrapper {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 84/109;
+    border: none;
+    padding: 0;
+    background: none;
+    border-radius: 7px;
+    cursor: pointer;
+    &:hover .carrousel__vignet,
+    &:focus-visible .carrousel__vignet {
+      transform: scale(1.1);
+    }
+    @include desktop {
+      aspect-ratio: 146/174;
+    }
+  }
+  &__vignet {
+    object-fit: cover;
+    object-position: center;
+    border-radius: 7px;
+    transition: transform 300ms ease-out;
+  }
+}

@@ -1,0 +1,31 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.tag {
+  width: fit-content;
+  min-width: 100px;
+  min-height: 33px;
+  background-color: $grey-light;
+  border-radius: 5px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  padding: 8px 0;
+  &__label {
+    color: $grey-dark;
+    font-size: $size-little;
+    font-weight: 400;
+  }
+  &__button {
+    background-color: transparent;
+    padding: 3px;
+    width: 16px;
+    height: 16px;
+    &:hover,
+    &:focus-visible {
+      cursor: pointer;
+    }
+  }
+}
