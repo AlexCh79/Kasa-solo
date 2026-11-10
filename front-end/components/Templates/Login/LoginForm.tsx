@@ -1,6 +1,6 @@
 "use client";
 import { useActionState } from "react";
-import Input from "@/components/UI/Inputs/Input";
+import Input from "@/components/UI/Inputs/Input/Input";
 import styles from "./LoginForm.module.scss";
 import Button from "@/components/UI/Buttons/Button";
 import Link from "next/link";

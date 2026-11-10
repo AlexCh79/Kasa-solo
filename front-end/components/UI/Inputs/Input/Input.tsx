@@ -21,7 +21,11 @@ export default function Input({ id, label, hint, ...rest }: InputProps) {
           {...rest}
         />
       </div>
-      {hint && <p id={`${id}-hint`}>{hint}</p>}
+      {hint && (
+        <p id={`${id}-hint`} className={styles.input__hint}>
+          {hint}
+        </p>
+      )}
     </div>
   );
 }

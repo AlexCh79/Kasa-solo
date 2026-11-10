@@ -1,0 +1,31 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.checkbox {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 10px;
+  width: 100%;
+  &__input {
+    appearance: none;
+    border: 1px solid $grey-dark;
+    background-color: $white;
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+    &:checked,
+    &:active {
+      background-color: $black;
+    }
+    &:hover,
+    &:focus-visible {
+      cursor: pointer;
+    }
+  }
+  &__text {
+    font-size: $size-little;
+    font-weight: 400;
+    color: $grey-dark;
+  }
+}
