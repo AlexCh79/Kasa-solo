@@ -4,11 +4,15 @@ import styles from "./Header.module.scss";
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
+import { logoutAction } from "@/app/actions/auth";
 
+interface MobileMenuProps {
+  isLoggedIn: boolean;
+}
 /**
  * Menu Mobile
  */
-export default function MobileMenu() {
+export default function MobileMenu({ isLoggedIn }: MobileMenuProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = (isOpen: boolean) => {
     setIsMenuOpen(isOpen);
@@ -72,13 +76,29 @@ export default function MobileMenu() {
             </li>
             <li className={styles.header__navItem}>
               <Link
-                href="/login"
+                href={isLoggedIn ? "/profile" : "/login"}
                 className={styles.header__navLink}
                 onClick={() => toggleMenu(false)}
               >
-                Se connecter
+                {isLoggedIn ? "Profil" : "Se connecter"}
               </Link>
             </li>
+            {isLoggedIn && (
+              <li className={styles.header__navItem}>
+                <form
+                  className={styles.header__navLink}
+                  action={logoutAction}
+                  onSubmit={() => toggleMenu(false)}
+                >
+                  <button
+                    type="submit"
+                    className={`${styles.header__navLink} ${styles.header__logoutBtnMobile}`}
+                  >
+                    Déconnexion
+                  </button>
+                </form>
+              </li>
+            )}
             <li className={styles.header__navItem}>
               <Button
                 label="Ajouter un logement"

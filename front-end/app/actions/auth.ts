@@ -2,6 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { login, register } from "@/lib/authUsers";
+import { deleteCookie } from "@/utils/cookies";
 
 export interface LoginState {
   error: string | null;
@@ -96,5 +97,13 @@ export async function registerAction(
   } catch (error) {
     return { error: error instanceof Error ? error.message : "Inscription impossible.", values };
   }
+  redirect("/");
+}
+
+/**
+ * Server Action gérant la déconnexion utilisateur
+ */
+export async function logoutAction() {
+  await deleteCookie("token");
   redirect("/");
 }

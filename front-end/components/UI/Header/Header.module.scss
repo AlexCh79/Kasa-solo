@@ -126,6 +126,24 @@
       scale: 1.2;
     }
   }
+  &__logoutBtn {
+    border: none;
+    background-color: transparent;
+    color: $main-red;
+    vertical-align: middle;
+    &:focus-visible,
+    &:hover {
+      cursor: pointer;
+      color: $dark-orange;
+      scale: 1.2;
+    }
+  }
+  &__logoutBtnMobile {
+    border: none;
+    background: none;
+    padding: 0;
+    font: inherit;
+  }
 }
 
 .line {

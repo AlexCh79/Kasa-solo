@@ -1,16 +1,20 @@
 import styles from "./Header.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import { HeartIcon, ProfileIcon, MessengerIcon } from "@/components/UI/Icons/Icons";
+import { HeartIcon, ProfileIcon, MessengerIcon, LogoutIcon } from "@/components/UI/Icons/Icons";
 import MobileMenu from "./MobileMenu";
+import { cookies } from "next/headers";
+import { logoutAction } from "@/app/actions/auth";
 
 /**
  * Header du site
  */
-export default function Header() {
+export default async function Header() {
+  const isLoggedIn = (await cookies()).has("token");
+
   return (
     <>
-      <MobileMenu />
+      <MobileMenu isLoggedIn={isLoggedIn} />
       <header className={`${styles.header} ${styles.desktop}`}>
         <div className={styles.header__container}>
           <nav className={styles.header__nav}>
@@ -54,10 +58,32 @@ export default function Header() {
                 <span className={styles.line} aria-hidden="true"></span>
               </li>
               <li className={styles.header__navItem}>
-                <Link href="/login" className={styles.header__navIcon} aria-label="Connexion">
+                <Link
+                  href={isLoggedIn ? "/profile" : "/login"}
+                  className={styles.header__navIcon}
+                  aria-label={isLoggedIn ? "Profil" : "Connexion"}
+                >
                   <ProfileIcon />
                 </Link>
               </li>
+              {isLoggedIn && (
+                <>
+                  <li>
+                    <span className={styles.line} aria-hidden="true"></span>
+                  </li>
+                  <li className={styles.header__navItem}>
+                    <form className={styles.header__navIcon} action={logoutAction}>
+                      <button
+                        type="submit"
+                        aria-label="Déconnexion"
+                        className={styles.header__logoutBtn}
+                      >
+                        <LogoutIcon />
+                      </button>
+                    </form>
+                  </li>
+                </>
+              )}
             </ul>
           </nav>
         </div>

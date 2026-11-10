@@ -14,3 +14,11 @@ export async function setCookie(name: string, value: string) {
     maxAge: 7 * 60 * 60 * 24,
   });
 }
+
+/**
+ * Suppression d'un cookie
+ * @param name - nom du cookie à supprimer
+ */
+export async function deleteCookie(name: string) {
+  (await cookies()).delete(name);
+}
