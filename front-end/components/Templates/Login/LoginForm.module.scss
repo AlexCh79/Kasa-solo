@@ -1,0 +1,73 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid $grey-light;
+  border-radius: 10px;
+  padding: 32px 16px;
+  margin: 80px auto;
+  background-color: $white;
+  gap: 38px;
+  max-width: 358px;
+  @include tablet {
+    width: 742px;
+    max-width: 100%;
+    padding: 80px;
+  }
+  &__titleContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    max-width: 390px;
+  }
+  &__title {
+    color: $main-red;
+    font-size: $size-h2;
+    font-weight: 700;
+    text-align: center;
+  }
+  &__subtitle {
+    color: $black;
+    @include main-text;
+    text-align: center;
+  }
+  &__inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  &__buttonZone {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    align-items: center;
+  }
+  &__buttonContainer {
+    width: 230px;
+  }
+  &__linksContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  &__link {
+    color: $main-red;
+    @include main-text;
+    text-decoration: none;
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+    }
+  }
+  &__linkSubtitle {
+    color: $main-red;
+    @include main-text;
+  }
+}

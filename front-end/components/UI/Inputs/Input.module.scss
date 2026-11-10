@@ -1,0 +1,31 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 100%;
+  min-width: 230px;
+  &__label {
+    @include main-text-bold;
+  }
+  &__wrapper {
+    display: inline-flex;
+    align-items: center;
+    min-width: 326px;
+    width: 100%;
+    border: 1px solid $grey-light;
+    border-radius: 4px;
+    background-color: $white;
+    padding: 16px 10px;
+    gap: 10px;
+  }
+  &__inputElement {
+    color: $black;
+    @include main-text;
+    border: none;
+    width: 100%;
+  }
+}

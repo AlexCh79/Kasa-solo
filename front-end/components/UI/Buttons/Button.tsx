@@ -1,5 +1,14 @@
 import Link from "next/link";
 import styles from "./Button.module.scss";
+import { ComponentProps } from "react";
+
+interface ButtonProps extends ComponentProps<"button"> {
+  label: string;
+  onClick?: () => void;
+  variant: "primary" | "secondary";
+  href?: string;
+  icon?: React.ReactNode;
+}
 
 /**
  * Bouton du site
@@ -8,6 +17,8 @@ import styles from "./Button.module.scss";
  * @param variant - couleur de fond orange foncé (primary) ou gris (secondary)
  * @param href - facultatif, adresse vers laquelle renvoie le bouton
  * @param icon - facultatif, icone à afficher dans le bouton
+ * @param type - type de bouton
+ * @param disabled - booléen, true si le bouton est désactivé
  */
 export default function Button({
   label,
@@ -15,13 +26,9 @@ export default function Button({
   variant,
   href,
   icon,
-}: {
-  label: string;
-  onClick?: () => void;
-  variant: "primary" | "secondary";
-  href?: string;
-  icon?: React.ReactNode;
-}) {
+  type = "button",
+  disabled,
+}: ButtonProps) {
   return href ? (
     <Link
       href={href}
@@ -39,9 +46,10 @@ export default function Button({
     </Link>
   ) : (
     <button
-      type="button"
+      type={type}
       className={`${styles.button} ${variant === "secondary" ? styles.secondary : styles.primary}`}
       onClick={onClick}
+      disabled={disabled}
     >
       {icon ? (
         <>
