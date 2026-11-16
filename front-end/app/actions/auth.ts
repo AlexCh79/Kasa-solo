@@ -3,6 +3,14 @@
 import { redirect } from "next/navigation";
 import { login, register } from "@/lib/authUsers";
 import { deleteCookie } from "@/utils/cookies";
+import { getCurrentUser, updateUser } from "@/lib/users";
+import type { UserRole } from "@/types/User";
+import { addImage } from "@/lib/uploads";
+
+interface ProfileValues {
+  name: string;
+  role: UserRole;
+}
 
 export interface LoginState {
   error: string | null;
@@ -106,4 +114,57 @@ export async function registerAction(
 export async function logoutAction() {
   await deleteCookie("token");
   redirect("/");
+}
+
+interface UpdateState {
+  error: string | null;
+  values?: ProfileValues;
+}
+
+/**
+ * Server Action gérant la mise à jour des données utilisateur
+ */
+export async function updateAction(
+  _prevState: UpdateState,
+  formData: FormData,
+): Promise<UpdateState> {
+  const user = await getCurrentUser();
+  // Si utilisateur non connecté, redirection vers la page de connexion
+  if (!user) redirect("/login");
+
+  const name = formData.get("name");
+  const file = formData.get("picture");
+  const role = formData.get("role");
+  let picture: string | undefined;
+
+  if (typeof name !== "string" || !name.trim() || !role) {
+    return { error: "Erreur dans le format des données des champs renseignés." };
+  }
+
+  if (role !== "client" && role !== "owner") {
+    return { error: "Rôle invalide." };
+  }
+
+  const values: ProfileValues = {
+    name: name.trim(),
+    role,
+  };
+
+  // Mise à jour utilisateur
+  try {
+    if (user.role === "owner" && file instanceof File && file.size > 0) {
+      picture = await addImage(file, "user-picture");
+    }
+    await updateUser({
+      id: user.id,
+      name: values.name,
+      picture,
+      role: values.role,
+    });
+  } catch (error) {
+    return { error: error instanceof Error ? error.message : "Mise à jour impossible.", values };
+  }
+
+  await deleteCookie("token");
+  redirect("/login?updated=1");
 }

@@ -1,0 +1,45 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.inputButton {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  &__label {
+    @include main-text-bold;
+    color: $black;
+  }
+  &__input {
+    padding: 16px 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background-color: $white;
+    border: 1px solid $grey-light;
+    border-radius: 10px;
+    min-width: 188px;
+  }
+  &__plus,
+  &__cross {
+    padding: 9px 18px;
+    border: none;
+    border-radius: 6px;
+    width: 37px;
+    height: 37px;
+    cursor: pointer;
+    &:hover,
+    &:focus-visible {
+      outline: 2px solid $dark-orange;
+    }
+  }
+  &__plus {
+    background-color: $main-red;
+    color: $white;
+  }
+  &__cross {
+    background-color: transparent;
+    cursor: pointer;
+    color: $main-red;
+  }
+}

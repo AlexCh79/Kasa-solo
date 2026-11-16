@@ -6,7 +6,11 @@ import Button from "@/components/UI/Buttons/Button";
 import Link from "next/link";
 import { loginAction } from "@/app/actions/auth";
 
-export default function LoginForm() {
+interface LoginFormProps {
+  info: string | null;
+}
+
+export default function LoginForm({ info }: LoginFormProps) {
   const [state, formAction, isPending] = useActionState(loginAction, { error: null });
 
   return (
@@ -17,6 +21,11 @@ export default function LoginForm() {
           Connectez-vous pour retrouver vos réservations, vos annonces et tout ce qui rend vos
           séjours uniques.
         </p>
+        {info && (
+          <p role="status" className="success">
+            {info}
+          </p>
+        )}
       </div>
       <form className={styles.login__inputContainer} action={formAction}>
         <Input
