@@ -30,7 +30,7 @@ export default function HomePage() {
         </div>
       </section>
       <Suspense fallback={<PropertyListSkeleton />}>
-        <PropertyList />
+        <PropertyList limit={6} />
       </Suspense>
       <section className={styles.howItWorks}>
         <div className={styles.howItWorks__titleContainer}>

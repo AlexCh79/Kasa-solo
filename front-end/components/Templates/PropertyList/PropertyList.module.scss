@@ -7,9 +7,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 0 16px;
   gap: 51px;
-  margin-top: 40px;
   &__container {
     width: 100%;
     display: flex;
@@ -27,5 +25,8 @@
       grid-template-columns: repeat(3, 1fr);
       max-width: 1113px;
     }
+  }
+  &__button {
+    width: 230px;
   }
 }
