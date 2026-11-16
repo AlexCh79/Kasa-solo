@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { getProperties } from "@/lib/properties";
-import FavoritesList from "@/components/Templates/FavoritesList/FavoritesList";
+import FavoritesSkeleton from "@/components/UI/Skeleton/FavoritesSkeleton/FavoritesSkeleton";
+import PropertyListSkeleton from "@/components/UI/Skeleton/PropertyListSkeleton/PropertyListSkeleton";
+import { Suspense } from "react";
 
 /**
  * Metadata de la page
@@ -12,7 +13,10 @@ export const metadata: Metadata = {
 /**
  * Page des favoris
  */
-export default async function FavoritesPage() {
-  const list = await getProperties();
-  return <FavoritesList properties={list} />;
+export default function FavoritesPage() {
+  return (
+    <Suspense fallback={<PropertyListSkeleton />}>
+      <FavoritesSkeleton />
+    </Suspense>
+  );
 }

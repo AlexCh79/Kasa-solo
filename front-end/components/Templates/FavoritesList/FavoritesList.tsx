@@ -1,9 +1,10 @@
 "use client";
 import { useFavorites } from "@/context/FavoritesContext";
 import styles from "./FavoritesList.module.scss";
-import PropertyCard from "@/components/UI/PropertyCard/PropertyCard";
 import type { PropertyBase } from "@/types/Property";
 import Button from "@/components/UI/Buttons/Button";
+import PropertyListSkeleton from "@/components/UI/Skeleton/PropertyListSkeleton/PropertyListSkeleton";
+import PropertyGrid from "../PropertyList/PropertyGrid";
 
 interface FavoritesListProps {
   properties: PropertyBase[];
@@ -25,21 +26,18 @@ export default function FavoritesList({ properties }: FavoritesListProps) {
         Retrouvez ici tous les logements que vous avez aimés. Prêts à réserver ? Un simple clic et
         votre prochain séjour est en route.
       </p>
-      {isReady &&
-        (list.length === 0 ? (
-          <div className={styles.favorites__empty}>
-            <p className={styles.favorites__subtitle}>
-              Vous n&apos;avez aucun favori enregistré pour le moment.
-            </p>
-            <Button href="/" label="Voir les logements" variant="primary" />
-          </div>
-        ) : (
-          <div className={styles.favorites__list}>
-            {list.map((property) => (
-              <PropertyCard key={property.id} property={property} />
-            ))}
-          </div>
-        ))}
+      {!isReady ? (
+        <PropertyListSkeleton />
+      ) : list.length === 0 ? (
+        <div className={styles.favorites__empty}>
+          <p className={styles.favorites__subtitle}>
+            Vous n&apos;avez aucun favori enregistré pour le moment.
+          </p>
+          <Button href="/" label="Voir les logements" variant="primary" />
+        </div>
+      ) : (
+        <PropertyGrid properties={list} />
+      )}
     </div>
   );
 }
