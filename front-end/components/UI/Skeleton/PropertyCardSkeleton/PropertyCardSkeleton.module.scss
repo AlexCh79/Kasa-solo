@@ -1,0 +1,63 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.shimmer {
+  background: linear-gradient(90deg, $grey-light 25%, $white 50%, $grey-light 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 355px;
+  &__cover {
+    aspect-ratio: 355/376;
+    border-radius: 10px 10px 0 0;
+  }
+  &__details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 176px;
+    padding: 16px 24px;
+    background-color: $white;
+    border-radius: 0 0 10px 10px;
+  }
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  &__title,
+  &__subtitle,
+  &__price {
+    border-radius: 4px;
+  }
+  &__title {
+    height: 24px;
+    width: 70%;
+  }
+  &__subtitle {
+    height: 16px;
+    width: 50%;
+  }
+  &__price {
+    height: 16px;
+    width: 30%;
+  }
+}

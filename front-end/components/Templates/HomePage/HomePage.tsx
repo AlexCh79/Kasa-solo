@@ -1,14 +1,13 @@
 import styles from "./HomePage.module.scss";
-import PropertyCard from "@/components/UI/PropertyCard/PropertyCard";
 import Image from "next/image";
-import { getProperties } from "@/lib/properties";
+import PropertyList from "../PropertyList/PropertyList";
+import PropertyListSkeleton from "@/components/UI/Skeleton/PropertyListSkeleton/PropertyListSkeleton";
+import { Suspense } from "react";
 
 /**
  * Page d'accueil du site
  */
-export default async function HomePage() {
-  const properties = await getProperties();
-
+export default function HomePage() {
   return (
     <div className={styles.homePage}>
       <section className={styles.homePage__introducing}>
@@ -30,11 +29,9 @@ export default async function HomePage() {
           />
         </div>
       </section>
-      <section className={styles.cards__container}>
-        {properties.map((property) => (
-          <PropertyCard key={property.id} property={property} />
-        ))}
-      </section>
+      <Suspense fallback={<PropertyListSkeleton />}>
+        <PropertyList />
+      </Suspense>
       <section className={styles.howItWorks}>
         <div className={styles.howItWorks__titleContainer}>
           <h2 className={styles.howItWorks__title}>Comment ça marche ?</h2>
