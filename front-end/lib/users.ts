@@ -2,6 +2,7 @@ import { getCookie } from "@/utils/cookies";
 import { fetchApi } from "./api";
 import type { UserData, UserPublic } from "@/types/User";
 import { toAbsoluteUrl } from "@/utils/urls";
+import { decodeToken } from "@/utils/token";
 
 /**
  * Appelle la liste des utilisateurs
@@ -56,16 +57,23 @@ export async function updateUser({ id, name, picture, role }: UserData): Promise
 }
 
 /**
- * Lit le token utilisateur pour savoir s'il est connecté et s'il est propriétaire
- * @param token - token utilisateur à lire
- * @returns l'utilisateur connecté
+ * Lit l'utilisateur connecté depuis le token
+ * @returns les données du token - non vérifié, ou null si pas connecté
+ */
+export async function getSession() {
+  const token = await getCookie("token");
+  return token ? decodeToken(token) : null;
+}
+
+/**
+ * Lit l'id utilisateur depuis le token pour savoir s'il est connecté et s'il est propriétaire
+ * @returns l'utilisateur connecté, null si pas de
  */
 export async function getCurrentUser() {
   try {
-    const token = await getCookie("token");
-    if (!token) return null;
-    const payload = JSON.parse(Buffer.from(token.split(".")[1], "base64url").toString());
-    return await getUserById(payload.id);
+    const session = await getSession();
+    if (!session) return null;
+    return await getUserById(session.id);
   } catch {
     return null;
   }

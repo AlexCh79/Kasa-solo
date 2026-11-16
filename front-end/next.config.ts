@@ -6,6 +6,7 @@ const nextConfig: NextConfig = {
       // Limite de la taille de fichiers
       bodySizeLimit: "11mb",
     },
+    proxyClientMaxBodySize: "11mb",
   },
 
   // Sources d'images autorisées pour next/image
