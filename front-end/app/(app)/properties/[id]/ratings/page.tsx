@@ -20,7 +20,12 @@ export async function generateMetadata({
 /**
  * Page des avis d'un logement
  */
-export default async function RatingsPage({ params }: PageProps<"/properties/[id]/ratings">) {
+export default async function RatingsPage({
+  params,
+  searchParams,
+}: PageProps<"/properties/[id]/ratings">) {
   const { id } = await params;
-  return <RatingsPageList propertyId={id} />;
+  const { added } = await searchParams;
+  const info = added === "1" ? "Merci pour votre avis, il a été pris en compte." : undefined;
+  return <RatingsPageList propertyId={id} info={info} />;
 }

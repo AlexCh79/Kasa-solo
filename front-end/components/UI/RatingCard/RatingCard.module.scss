@@ -20,9 +20,11 @@
   &__user {
     @include main-text-bold;
     color: $main-red;
+    margin-right: 10px;
   }
   &__note {
-    @include main-text-bold;
+    font-weight: 600;
+    font-size: $size-h4;
     color: $black;
   }
   &__comment {

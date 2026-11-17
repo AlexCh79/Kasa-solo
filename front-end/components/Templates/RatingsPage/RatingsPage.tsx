@@ -11,13 +11,15 @@ import { ArrowLeftIcon } from "@/components/UI/Icons/Icons";
 
 interface RatingsPageProps {
   propertyId: string;
+  info?: string;
 }
 
 /**
  * Liste des avis d'un logement
- * @param propertyId - id du logement dont on veut afficher les avis  
+ * @param propertyId - id du logement dont on veut afficher les avis
+ * @param info - info à afficher transmis par la page parente
  */
-export async function RatingsPageList({ propertyId }: RatingsPageProps) {
+export async function RatingsPageList({ propertyId, info }: RatingsPageProps) {
   let property: PropertyBase;
   let ratings: Rating[];
 
@@ -43,6 +45,19 @@ export async function RatingsPageList({ propertyId }: RatingsPageProps) {
         <p className={styles.rating__subtitle}>
           Nos voyageurs ont laissé un avis suite à leur séjour dans le logement {property.title}
         </p>
+        {info && (
+          <p role="status" className="success">
+            {info}
+          </p>
+        )}
+
+        <div className={styles.rating__button}>
+          <Button
+            href={`/properties/${property.id}/ratings/add`}
+            variant="primary"
+            label="Donnez votre avis"
+          />
+        </div>
       </div>
       {ratings.length === 0 ? (
         <p className={styles.rating__none}>Aucun avis pour le moment.</p>

@@ -1,0 +1,26 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.ratingAdd {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0 16px;
+  margin-top: 40px;
+  gap: 50px;
+  &__button {
+    width: 200px;
+  }
+  &__title {
+    @include h1;
+    color: $main-red;
+  }
+  &__form {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
