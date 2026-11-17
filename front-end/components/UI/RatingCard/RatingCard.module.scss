@@ -1,0 +1,32 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.ratingCard {
+  background-color: $white;
+  min-width: 300px;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  gap: 20px;
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+  }
+  &__user {
+    @include main-text-bold;
+    color: $main-red;
+  }
+  &__note {
+    @include main-text-bold;
+    color: $black;
+  }
+  &__comment {
+    @include main-text;
+    color: $black;
+  }
+}

@@ -1,0 +1,45 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.rating {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  padding: 0 16px;
+  margin-top: 40px;
+  gap: 50px;
+  &__button {
+    width: 200px;
+  }
+  &__titleContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    text-align: center;
+  }
+  &__title {
+    @include h1;
+    color: $main-red;
+  }
+  &__subtitle,
+  &__none {
+    @include main-text;
+    color: $black;
+    text-align: center;
+  }
+  &__list {
+    max-width: 350px;
+    @include desktop {
+      max-width: 600px;
+    }
+    width: 100%;
+    list-style: none;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+  }
+}
