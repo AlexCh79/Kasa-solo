@@ -6,6 +6,25 @@ import styles from "./property.module.scss";
 import Tag from "@/components/UI/Tags/Tags";
 import { ArrowLeftIcon } from "@/components/UI/Icons/Icons";
 import Carrousel from "@/components/UI/Carrousel/Carrousel";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import { ApiError } from "@/lib/api";
+import FavButton from "@/components/UI/Buttons/FavoriteButton/FavButton";
+
+/**
+ * Génération des métadatas de la page en fonction du logement
+ */
+export async function generateMetadata({
+  params,
+}: PageProps<"/properties/[id]">): Promise<Metadata> {
+  const { id } = await params;
+  try {
+    const property = await getPropertyById(id);
+    return { title: `${property.title} | Kasa` };
+  } catch {
+    return { title: "Logement | Kasa" };
+  }
+}
 
 /**
  * Page de détail d'un logement
@@ -15,14 +34,20 @@ export default async function PropertyPage({ params }: PageProps<"/properties/[i
   let property: PropertyDetail;
   try {
     property = await getPropertyById(id);
-  } catch {
-    throw new Error("Logement introuvable");
+  } catch (error) {
+    if (error instanceof ApiError && error.status === 404) notFound();
+    throw error;
   }
 
   return (
     <div className={styles.property}>
       <div className={styles.buttonZone}>
-        <Button variant="secondary" label="Retour aux annonces" icon={<ArrowLeftIcon />} href="/" />
+        <Button
+          variant="secondary"
+          label="Retour aux annonces"
+          icon={<ArrowLeftIcon />}
+          href="/properties"
+        />
       </div>
       <div className={styles.property__carrousel}>
         <Carrousel title={property.title} images={property.pictures} key={property.id} />
@@ -30,7 +55,10 @@ export default async function PropertyPage({ params }: PageProps<"/properties/[i
       <div className={styles.property__description}>
         <div className={styles.property__descriptionText}>
           <div className={styles.property__descriptionTitleContainer}>
-            <h1 className={styles.property__descriptionTitle}>{property.title}</h1>
+            <div className={styles.property__titleFav}>
+              <h1 className={styles.property__descriptionTitle}>{property.title}</h1>
+              <FavButton propertyId={property.id} propertyTitle={property.title} />
+            </div>
             <div className={styles.property__descriptionLocationContainer}>
               <Image src="/icon_map.svg" width={16} height={16} alt="" />
               <span>{property.location ? property.location : "Localisation inconnue"}</span>
@@ -59,7 +87,7 @@ export default async function PropertyPage({ params }: PageProps<"/properties/[i
         <div className={styles.host__Container}>
           <div className={styles.host__coverWrapper}>
             <Image
-              src={`${property.host.picture}`}
+              src={property.host.picture}
               width={81}
               height={82}
               className={styles.host__cover}
@@ -68,11 +96,23 @@ export default async function PropertyPage({ params }: PageProps<"/properties/[i
           </div>
           <span className={styles.host__name}>{property.host.name}</span>
           <div className={styles.host__ratingWrapper}>
-            <Image src="/icon_star.svg" width={19} height={23} alt="Note moyenne du logement" />
-            <span className={styles.host__rating}>{property.ratingAvg}</span>
+            <Image
+              src="/icon_star.svg"
+              width={19}
+              height={23}
+              alt="Note moyenne du logement sur 5"
+            />
+            <span className={styles.host__rating}>
+              {property.ratingAvg.toLocaleString("fr-FR", { maximumFractionDigits: 1 })}
+            </span>
           </div>
         </div>
         <Button label="Contacter l'hôte" variant="primary" href="/messenger" />
+        <Button
+          label="Voir les avis"
+          variant="primary"
+          href={`/properties/${property.id}/ratings`}
+        />
       </div>
     </div>
   );

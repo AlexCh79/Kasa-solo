@@ -1,6 +1,19 @@
 import { cookies } from "next/headers";
 
 /**
+ * Erreur de l'API avec son code de statut HTTP
+ */
+export class ApiError extends Error {
+  status: number;
+
+  constructor(message: string, status: number) {
+    super(message);
+    this.name = "ApiError";
+    this.status = status;
+  }
+}
+
+/**
  * Liaison avec l'API
  * @param path - chemin de la requête
  * @param request - instructions facultatives de la requête
@@ -35,24 +48,33 @@ export const fetchApi = async (path: string, request?: RequestInit) => {
 
   // Message d'erreur par défaut selon le statut
   if (response.status === 400) {
-    throw new Error("Des données sont manquantes pour continuer.");
+    throw new ApiError("Des données sont manquantes pour continuer.", response.status);
   }
   if (response.status === 401) {
-    throw new Error("Vous devez être connecté pour accéder à cette fonctionnalité.");
+    throw new ApiError(
+      "Vous devez être connecté pour accéder à cette fonctionnalité.",
+      response.status,
+    );
   }
   if (response.status === 403) {
-    throw new Error("Accès interdit ! Vous devez être administrateur pour continuer.");
+    throw new ApiError(
+      "Accès interdit ! Vous devez être administrateur pour continuer.",
+      response.status,
+    );
   }
   if (response.status === 404) {
-    throw new Error("Aucune donnée trouvée.");
+    throw new ApiError("Aucune donnée trouvée.", response.status);
   }
   if (response.status === 409) {
-    throw new Error("La donnée que vous souhaitez enregistrer existe déjà.");
+    throw new ApiError("La donnée que vous souhaitez enregistrer existe déjà.", response.status);
   }
 
   // Message d'erreur si pas de réponse (ou statut de l'erreur non prévu)
   if (!response.ok) {
-    throw new Error("Oups, une erreur est survenue dans la liaison avec le serveur.");
+    throw new ApiError(
+      "Oups, une erreur est survenue dans la liaison avec le serveur.",
+      response.status,
+    );
   }
 
   const body = await response.json();

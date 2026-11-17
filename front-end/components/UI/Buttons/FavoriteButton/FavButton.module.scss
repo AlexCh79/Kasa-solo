@@ -2,10 +2,6 @@
 @use "@/styles/mixins" as *;
 
 .favButton {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,6 +11,7 @@
   border-radius: 5px;
   background-color: $grey-light;
   color: $black;
+  flex-shrink: 0;
   cursor: pointer;
   transition: color 300ms ease-out;
   &:hover {

@@ -65,8 +65,8 @@ export async function addRating(id: string, data: RatingCreate): Promise<Ratings
 function toRating({ created_at, user, ...rest }: RatingAPI): Rating {
   return {
     ...rest,
-    user: user.picture ? { ...user, picture: toAbsoluteUrl(user.picture) } : user,
-    createdAt: created_at.replace(" ", "T") + "Z",
+    user: { ...user, picture: user.picture ? toAbsoluteUrl(user.picture) : "/default_profile.svg" },
+    createdAt: created_at,
   };
 }
 

@@ -39,7 +39,9 @@ export default function PropertyCard({ property }: PropertyCardProps) {
           </div>
         </div>
       </Link>
-      <FavButton propertyId={property.id} propertyTitle={property.title} />
+      <div className={styles.card__fav}>
+        <FavButton propertyId={property.id} propertyTitle={property.title} />
+      </div>
     </article>
   );
 }

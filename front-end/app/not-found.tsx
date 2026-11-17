@@ -23,6 +23,7 @@ export default function NotFound() {
       </div>
       <div className="error__actions">
         <Button href="/" label="Accueil" variant="primary" />
+        <Button href="/properties" label="Logements" variant="primary" />
       </div>
     </div>
   );

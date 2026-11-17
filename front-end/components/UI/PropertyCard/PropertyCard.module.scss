@@ -79,4 +79,10 @@
       outline: 1px solid $main-red;
     }
   }
+  &__fav {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+  }
 }

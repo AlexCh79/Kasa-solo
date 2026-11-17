@@ -49,10 +49,10 @@ export function toProperty({
     pricePerNight: price_per_night,
     ratingAvg: rating_avg,
     ratingCount: ratings_count,
-    cover: cover ? toAbsoluteUrl(cover) : null,
+    cover: cover ? toAbsoluteUrl(cover) : "/default_cover.svg",
     host: {
       ...host,
-      picture: host.picture ? toAbsoluteUrl(host.picture) : null,
+      picture: host.picture ? toAbsoluteUrl(host.picture) : "/default_profile.svg",
     },
   };
 }

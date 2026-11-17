@@ -85,6 +85,12 @@
     row-gap: 8px;
     column-gap: 8px;
   }
+  &__titleFav {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
 }
 
 .host {
