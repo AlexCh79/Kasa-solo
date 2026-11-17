@@ -7,9 +7,14 @@ export const metadata: Metadata = {
   title: "Profil | Kasa",
 };
 
-export default async function ProfilePage() {
+export default async function ProfilePage({ searchParams }: PageProps<"/profile">) {
   const user = await getCurrentUser();
   if (!user) redirect("/login");
+  const { invite } = await searchParams;
+  const info =
+    invite === "owner" && user.role === "client"
+      ? "Pour ajouter un logement, choisissez le rôle Propriétaire ci-dessous, validez, puis reconnectez-vous."
+      : undefined;
 
-  return <Profile user={user} />;
+  return <Profile user={user} info={info} />;
 }

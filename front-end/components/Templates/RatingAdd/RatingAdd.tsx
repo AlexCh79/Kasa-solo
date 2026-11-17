@@ -38,7 +38,13 @@ export default function RatingAdd({ propertyId }: RatingAddProps) {
         <SelectInput
           name="note"
           label="Votre note sur 5 : "
-          options={["1", "2", "3", "4", "5"]}
+          options={[
+            { value: "1", label: "1" },
+            { value: "2", label: "2" },
+            { value: "3", label: "3" },
+            { value: "4", label: "4" },
+            { value: "5", label: "5" },
+          ]}
           id="note"
         />
         <TextArea

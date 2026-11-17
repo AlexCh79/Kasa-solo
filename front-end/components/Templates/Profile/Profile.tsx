@@ -10,11 +10,15 @@ import Image from "next/image";
 
 interface ProfileProps {
   user: UserData;
+  info?: string;
 }
 
-export default function Profile({ user }: ProfileProps) {
+export default function Profile({ user, info }: ProfileProps) {
   const [state, formAction, isPending] = useActionState(updateAction, { error: null });
-  const roleList: UserRole[] = ["client", "owner"];
+  const roleList: { value: UserRole; label: string }[] = [
+    { value: "client", label: "Client" },
+    { value: "owner", label: "Propriétaire" },
+  ];
 
   return (
     <div className={styles.profile}>
@@ -22,6 +26,11 @@ export default function Profile({ user }: ProfileProps) {
         <h1 className={styles.profile__title}>Vos informations</h1>
         <p className={styles.profile__subtitle}>Mettez vos informations à jour.</p>
       </div>
+      {info && (
+        <p role="status" className="invite">
+          {info}
+        </p>
+      )}
       <form className={styles.profile__inputContainer} action={formAction}>
         <Input
           label="Votre prénom et nom"

@@ -103,3 +103,12 @@ main {
   @include main-text;
   color: #0c8346; // Vert profond
 }
+
+.invite {
+  @include main-text-bold;
+  color: $main-red;
+  background-color: $white;
+  border: 1px solid $main-red;
+  border-radius: 10px;
+  padding: 10px;
+}
