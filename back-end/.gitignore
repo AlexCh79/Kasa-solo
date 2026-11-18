@@ -1,3 +1,5 @@
 node_modules
 .idea
 /data/kasa.sqlite3
+/public/uploads/*
+!/public/uploads/.gitkeep
