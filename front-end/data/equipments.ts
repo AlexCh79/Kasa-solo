@@ -1,0 +1,38 @@
+export const equipments: { value: string; label: string }[] = [
+  {
+    value: "microwave",
+    label: "Micro-ondes",
+  },
+  {
+    value: "sofa",
+    label: "Clic-clac",
+  },
+  {
+    value: "shower",
+    label: "Douche italienne",
+  },
+  {
+    value: "oven",
+    label: "Four",
+  },
+  { value: "fridge", label: "Frigo" },
+  { value: "storage", label: "Rangements" },
+  { value: "wifi", label: "WIFI" },
+  { value: "bed", label: "Lit" },
+  { value: "parking", label: "Parking" },
+  { value: "kettle", label: "Bouilloire" },
+  { value: "hairdryer", label: "Sèche Cheveux" },
+  { value: "bathroom", label: "SDB" },
+  { value: "washing", label: "Machine à laver" },
+  { value: "dry", label: "Toilettes sèches" },
+  { value: "kitchen", label: "Cuisine équipée" },
+  { value: "hangers", label: "Cintres" },
+  { value: "television", label: "Télévision" },
+  { value: "window", label: "Baie vitrée" },
+  { value: "bedroom", label: "Chambre séparée" },
+  { value: "hood", label: "Hotte" },
+  { value: "air", label: "Climatisation" },
+  { value: "bathtub", label: "Baignoire" },
+  { value: "american", label: "Frigo Américain" },
+  { value: "park", label: "Vue Parc" },
+] as const;

@@ -1,0 +1,134 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.add {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  @include desktop {
+    gap: 40px;
+    max-width: 1168px;
+    justify-self: center;
+  }
+  &__return {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 189px;
+  }
+  &__returnContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 16px;
+  padding: 0 16px;
+  @include desktop {
+    gap: 40px;
+  }
+  &__wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+  &__title {
+    font-size: $size-h3;
+    font-weight: 500;
+    color: $black;
+    @include desktop {
+      @include h2;
+    }
+  }
+  &__grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    @include desktop {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto;
+      column-gap: 16px;
+      row-gap: 16px;
+      grid-template-areas:
+        "property cover"
+        "property host"
+        "equipments tags";
+    }
+  }
+  &__container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    border: 1px solid $grey-light;
+    background-color: $white;
+    border-radius: 10px;
+    align-items: flex-start;
+    justify-content: center;
+    @include desktop {
+      padding: 40px;
+      align-items: center;
+    }
+  }
+  &__property {
+    grid-area: property;
+  }
+  &__cover {
+    grid-area: cover;
+  }
+  &__host {
+    grid-area: host;
+  }
+  &__equipments {
+    grid-area: equipments;
+  }
+  &__tags {
+    grid-area: tags;
+  }
+  &__label {
+    @include main-text-bold;
+    color: $black;
+  }
+  &__equipGrid {
+    border: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    width: 100%;
+  }
+  &__tagsList {
+    border: none;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 4px;
+    width: 100%;
+  }
+  &__addInput {
+    border: none;
+    background-color: transparent;
+    color: $main-red;
+    @include main-text;
+    cursor: pointer;
+  }
+  &__hostPictureWrapper {
+    overflow: hidden;
+    aspect-ratio: 100/100;
+    border-radius: 10px;
+  }
+  &__hostPicture {
+    object-fit: cover;
+    object-position: center;
+  }
+}

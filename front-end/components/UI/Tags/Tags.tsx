@@ -18,7 +18,7 @@ export default function Tag({ label, edit, onClick }: TagProps) {
     <div className={styles.tag}>
       <span className={styles.tag__label}>{label}</span>
       {edit && (
-        <button className={styles.tag__button} onClick={onClick}>
+        <button type="button" className={styles.tag__button} onClick={onClick}>
           <Image src="/icon_cross.svg" width={9} height={9} alt={`Supprimer le tag ${label}`} />
         </button>
       )}

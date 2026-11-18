@@ -19,7 +19,6 @@
     border: 1px solid $grey-light;
     border-radius: 4px;
     background-color: $white;
-    padding: 16px 10px;
     gap: 10px;
   }
   &__inputElement {
@@ -27,6 +26,8 @@
     @include main-text;
     border: none;
     width: 100%;
+    padding: 16px 10px;
+    border-radius: 4px;
   }
   &__hint {
     font-size: $size-little;

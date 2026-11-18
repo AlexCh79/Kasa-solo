@@ -19,14 +19,15 @@
     border: 1px solid $grey-light;
     border-radius: 4px;
     background-color: $white;
-    padding: 16px 10px;
     gap: 10px;
   }
   &__input {
     color: $black;
     @include main-text;
     border: none;
-    min-height: 50px;
+    min-height: 120px;
     width: 100%;
+    border-radius: 4px;
+    padding: 16px 10px;
   }
 }

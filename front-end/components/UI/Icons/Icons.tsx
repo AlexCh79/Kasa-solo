@@ -134,3 +134,37 @@ export const LogoutIcon = ({ size = 16, className }: IconProps) => (
     />
   </svg>
 );
+
+/**
+ * Icône plus (ajout). Prend la couleur de texte de son parent.
+ */
+export const PlusIcon = ({ size = 11, className }: IconProps) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 11 11"
+    fill="currentColor"
+    aria-hidden="true"
+    focusable="false"
+    className={className}
+  >
+    <path d="M5.5 0C5.776 0 6 .224 6 .5V5h4.5c.276 0 .5.224.5.5s-.224.5-.5.5H6v4.5c0 .276-.224.5-.5.5S5 10.776 5 10.5V6H.5C.224 6 0 5.776 0 5.5S.224 5 .5 5H5V.5C5 .224 5.224 0 5.5 0Z" />
+  </svg>
+);
+
+/**
+ * Icône croix (suppression). Prend la couleur de texte de son parent.
+ */
+export const CrossIcon = ({ size = 9, className }: IconProps) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 9 9"
+    fill="currentColor"
+    aria-hidden="true"
+    focusable="false"
+    className={className}
+  >
+    <path d="M.179.178a.608.608 0 0 1 .861 0L4.505 3.642 7.968.179a.609.609 0 0 1 .862.862L5.366 4.504 8.83 7.967a.609.609 0 1 1-.862.862L4.505 5.364 1.04 8.829a.609.609 0 1 1-.861-.861L3.643 4.503.179 1.039a.608.608 0 0 1 0-.861Z" />
+  </svg>
+);

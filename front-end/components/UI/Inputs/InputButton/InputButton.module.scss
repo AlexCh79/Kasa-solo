@@ -2,17 +2,29 @@
 @use "@/styles/mixins" as *;
 
 .inputButton {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 4px;
+  width: 100%;
+  border: none;
   &__label {
     @include main-text-bold;
     color: $black;
   }
-  &__input {
+  &__wrapper {
+    display: inline-flex;
+    gap: 8px;
+    align-items: center;
+    width: 100%;
+    min-height: 40px;
+  }
+  &__input,
+  &__fileName {
     padding: 16px 10px;
     display: inline-flex;
+    width: 100%;
     align-items: center;
     gap: 10px;
     background-color: $white;
@@ -22,7 +34,7 @@
   }
   &__plus,
   &__cross {
-    padding: 9px 18px;
+    flex-shrink: 0;
     border: none;
     border-radius: 6px;
     width: 37px;
@@ -31,11 +43,13 @@
     &:hover,
     &:focus-visible {
       outline: 2px solid $dark-orange;
+      outline-offset: 2px;
     }
   }
   &__plus {
     background-color: $main-red;
     color: $white;
+    cursor: pointer;
   }
   &__cross {
     background-color: transparent;

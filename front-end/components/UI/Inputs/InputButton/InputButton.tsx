@@ -1,29 +1,70 @@
+"use client";
 import styles from "./InputButton.module.scss";
-import { ComponentProps } from "react";
-import Image from "next/image";
+import { useRef, useState, type ChangeEvent, type ComponentProps } from "react";
+import { CrossIcon, PlusIcon } from "../../Icons/Icons";
 
-interface InputButtonProps extends ComponentProps<"button"> {
+interface InputButtonProps extends Omit<ComponentProps<"input">, "type"> {
   id: string;
   label: string;
-  action: "add" | "delete";
 }
 
-export default function InputButton({ id, label, action, ...rest }: InputButtonProps) {
+/**
+ * Champ input personnalisé avec bouton + ou x pour ajouter ou retirer
+ * @param id - id de l'input
+ * @param label - texte du label
+ */
+export default function InputButton({ id, label, onChange, ...rest }: InputButtonProps) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [fileName, setFileName] = useState<string | null>(null);
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    setFileName(event.target.files?.[0]?.name ?? null);
+    onChange?.(event);
+  }
+
+  function handleRemove() {
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+    setFileName(null);
+  }
+
   return (
     <div className={styles.inputButton}>
       <label htmlFor={id} className={styles.inputButton__label}>
         {label}
       </label>
-      <input type="file" className={styles.inputButton__input} id={id} />
-      <button {...rest}>
-        <Image
-          src={action === "add" ? "/icon_plus.svg" : "/icon_cross.svg"}
-          width={16}
-          height={16}
-          className={action === "add" ? styles.inputButton__plus : styles.inputButton__cross}
-          alt={action === "add" ? "Ajouter" : "Supprimer"}
+      <div className={styles.inputButton__wrapper}>
+        <input
+          ref={inputRef}
+          type="file"
+          {...rest}
+          className="sr-only"
+          tabIndex={-1}
+          id={id}
+          onChange={handleChange}
         />
-      </button>
+        <span className={styles.inputButton__fileName}>{fileName ?? ""}</span>
+        {fileName ? (
+          <button
+            type="button"
+            onClick={handleRemove}
+            aria-label={`Retirer le fichier ${fileName}`}
+            className={styles.inputButton__cross}
+          >
+            <CrossIcon />
+          </button>
+        ) : (
+          <button
+            className={styles.inputButton__plus}
+            onClick={() => inputRef.current?.click()}
+            aria-label={`Choisir: ${label}`}
+            type="button"
+          >
+            <PlusIcon />
+          </button>
+        )}
+      </div>
     </div>
   );
 }
