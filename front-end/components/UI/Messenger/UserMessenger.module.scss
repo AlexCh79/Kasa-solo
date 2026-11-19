@@ -1,0 +1,76 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.user {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-bottom: 1px solid $grey-light;
+  padding: 8px 0;
+  gap: 10px;
+  &__link {
+    text-decoration: none;
+    color: $black;
+    background-color: $white;
+    &:hover,
+    &:focus-visible {
+      background-color: $light-orange;
+    }
+  }
+  &__body {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 10px;
+  }
+  &__contactWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+  }
+  &__contactCoverWrapper {
+    overflow: hidden;
+    aspect-ratio: 44/45;
+    border-radius: 5px;
+    background-color: $grey-light;
+  }
+  &__contactCover {
+    object-fit: cover;
+    object-position: center;
+  }
+  &__contactInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+  }
+  &__contactName {
+    @include main-text-bold;
+    color: $black;
+  }
+  &__contactPreview,
+  &__contactTimer {
+    font-size: $size-little;
+    color: $grey-dark;
+    font-weight: 400;
+  }
+  &__contactPreview {
+    max-width: 190px;
+  }
+  &__contactTimerWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: space-between;
+  }
+  &__unread {
+    color: $main-red;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+}
