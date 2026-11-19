@@ -44,6 +44,7 @@ describe("Carrousel", () => {
 
   // 5 photos : Après la dernière photo, on revient à la première
   // 1 photo principale + 4 vignettes
+  // Le texte change automatiquement pour les lecteurs d'écran
   it("should loop back to the first picture after the last one - 5 pictures", async () => {
     const user = userEvent.setup();
     render(<Carrousel title="Titre" images={fivePictures} />);
@@ -53,6 +54,7 @@ describe("Carrousel", () => {
     for (let i = 0; i < fivePictures.length - 1; i++) {
       await user.click(screen.getAllByRole("button")[0]);
     }
+    expect(screen.getByText("Photo 5 sur 5")).toBeInTheDocument();
     expect(screen.getByRole("img", { name: "Titre, photo 5 sur 5" })).toBeInTheDocument();
     expect(screen.getAllByRole("button")[0]).toHaveAccessibleName("Afficher la photo 1 sur 5");
 
