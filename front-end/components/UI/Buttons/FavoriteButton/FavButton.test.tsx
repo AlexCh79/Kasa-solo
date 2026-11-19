@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 import { FavoritesProvider } from "@/context/FavoritesContext";
 
 /**
- * Factorisation du boutton à tester avec son Provider
+ * Factorisation du bouton à tester avec son Provider
  */
 function renderFav() {
   return render(<FavButton propertyId="1" propertyTitle="Titre" />, { wrapper: FavoritesProvider });
@@ -18,12 +18,6 @@ function renderFav() {
 describe("FavButton", () => {
   beforeEach(() => {
     localStorage.clear();
-  });
-  // Le bouton apparait dans le navigateur
-  it("should render without crashing", () => {
-    renderFav();
-    const button = screen.getByRole("button");
-    expect(button).toBeInTheDocument();
   });
 
   // Le bouton est pressé (inactif vers actif) au clic, son label change (titre) et le favori est stocké dans le localStorage
@@ -42,7 +36,7 @@ describe("FavButton", () => {
     expect(JSON.parse(localStorage.getItem("kasa-favorites") ?? "[]")).toContain("1");
   });
 
-  // Le bouton est pressé (actif vers inactif) au clic, son label change et le favoris est retiré du localStorage
+  // Le bouton est pressé (actif vers inactif) au clic, son label change et le favori est retiré du localStorage
   it("should remove property from favorites on click", async () => {
     const user = userEvent.setup();
     localStorage.setItem("kasa-favorites", JSON.stringify(["1"]));

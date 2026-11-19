@@ -10,6 +10,10 @@ interface LoginFormProps {
   info: string | null;
 }
 
+/**
+ * Formulaire de connexion
+ * @param info - statut à afficher
+ */
 export default function LoginForm({ info }: LoginFormProps) {
   const [state, formAction, isPending] = useActionState(loginAction, { error: null });
 
