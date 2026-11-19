@@ -20,14 +20,20 @@
     "sass": "^1.105.1"
   },
   "devDependencies": {
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^8.0.0",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.13",
     "@types/node": "^24.19.2",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@vitejs/plugin-react": "^6.3.0",
     "@vitest/coverage-v8": "^5.0.5",
     "@vitest/ui": "^5.0.5",
     "eslint": "^9",
     "eslint-config-next": "^16.4.5",
     "eslint-config-prettier": "^10.1.8",
+    "jsdom": "^31.0.1",
     "prettier": "^3.9.10",
     "typescript": "^5",
     "vitest": "^5.0.5"
