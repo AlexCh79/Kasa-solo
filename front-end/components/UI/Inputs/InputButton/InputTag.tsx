@@ -9,6 +9,12 @@ interface InputTagProps extends Omit<ComponentProps<"input">, "onChange" | "valu
   onAdd: (tag: string) => void;
 }
 
+/**
+ * Champ input personnalisé pour l'ajout de catégories de logement (tags)
+ * @param id - id du composant
+ * @param label - titre du label à afficher
+ * @param onAdd - appel de la fonction d'ajout du tag aux tags existants
+ */
 export function InputTag({ id, label, onAdd, ...rest }: InputTagProps) {
   const [value, setValue] = useState("");
 
