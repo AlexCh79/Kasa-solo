@@ -2,6 +2,7 @@ import styles from "./CheckBox.module.scss";
 import type { ComponentProps } from "react";
 
 interface CheckBoxProps extends ComponentProps<"input"> {
+  id: string;
   label: string;
 }
 
