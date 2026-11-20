@@ -7,6 +7,12 @@ interface InputProps extends ComponentProps<"input"> {
   hint?: string;
 }
 
+/**
+ * Input et son label personnalisé
+ * @param id - id du composant
+ * @param label - titre à afficher en label
+ * @param hint - indice à afficher
+ */
 export default function Input({ id, label, hint, ...rest }: InputProps) {
   return (
     <div className={styles.input}>
