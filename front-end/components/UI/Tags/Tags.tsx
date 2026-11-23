@@ -1,5 +1,5 @@
-import Image from "next/image";
 import styles from "./Tags.module.scss";
+import { CrossIcon } from "../Icons/Icons";
 
 interface TagProps {
   label: string;
@@ -18,8 +18,13 @@ export default function Tag({ label, edit, onClick }: TagProps) {
     <div className={styles.tag}>
       <span className={styles.tag__label}>{label}</span>
       {edit && (
-        <button type="button" className={styles.tag__button} onClick={onClick}>
-          <Image src="/icon_cross.svg" width={9} height={9} alt={`Supprimer le tag ${label}`} />
+        <button
+          type="button"
+          className={styles.tag__button}
+          onClick={onClick}
+          aria-label={`Supprimer le tag ${label}`}
+        >
+          <CrossIcon />
         </button>
       )}
     </div>
