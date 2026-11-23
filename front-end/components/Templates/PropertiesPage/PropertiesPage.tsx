@@ -3,6 +3,9 @@ import PropertyListSkeleton from "@/components/UI/Skeleton/PropertyListSkeleton/
 import PropertyList from "../PropertyList/PropertyList";
 import { Suspense } from "react";
 
+/**
+ * Page listant tous les logements du site
+ */
 export default function PropertiesPage() {
   return (
     <section className={styles.properties}>

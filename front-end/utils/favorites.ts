@@ -41,7 +41,10 @@ export const getFavorites = (): string[] => {
   return cachedFavorites;
 };
 
-// Tableau vide à utiliser pendant le rendu serveur
+/**
+ * Tableau vide à utiliser pendant le rendu serveur
+ * @returns un tableau vide (pas de localStorage côté serveur)
+ */
 export const getServerFavorites = (): string[] => EMPTY_FAVORITES;
 
 /**

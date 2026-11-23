@@ -13,6 +13,11 @@ interface ProfileProps {
   info?: string;
 }
 
+/**
+ * Formulaire de modification du profil utilisateur
+ * @param user - utilisateur connecté
+ * @param info - message d'information
+ */
 export default function Profile({ user, info }: ProfileProps) {
   const [state, formAction, isPending] = useActionState(updateAction, { error: null });
   const roleList: { value: UserRole; label: string }[] = [

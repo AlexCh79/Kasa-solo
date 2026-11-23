@@ -7,6 +7,9 @@ import Link from "next/link";
 import { registerAction } from "@/app/actions/auth";
 import CheckBox from "@/components/UI/Inputs/CheckBox/CheckBox";
 
+/**
+ * Formulaire d'inscription d'un utilisateur
+ */
 export default function RegisterForm() {
   const [state, formAction, isPending] = useActionState(registerAction, { error: null });
 

@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   description: "Réservez votre prochain séjour dès maintenant",
 };
 
+/**
+ * Layout du site
+ * @param children - page à afficher
+ */
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="fr" className={inter.variable}>

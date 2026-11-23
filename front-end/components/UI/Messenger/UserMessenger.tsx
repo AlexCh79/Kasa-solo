@@ -2,6 +2,9 @@ import styles from "./UserMessenger.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 
+/**
+ * Conversation dans la liste de la messagerie
+ */
 export default function UserMessenger() {
   return (
     <article className={styles.user}>
@@ -12,7 +15,7 @@ export default function UserMessenger() {
               <div className={styles.user__contactCoverWrapper}>
                 <Image
                   src="/default_profile.svg"
-                  alt={`Photo de profil de Contact}`}
+                  alt={`Photo de profil de Contact`}
                   width={44}
                   height={45}
                 />

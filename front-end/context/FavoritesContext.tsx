@@ -27,6 +27,10 @@ const FavoritesContext = createContext<FavoritesContextProps | null>(null);
 // Fonction d'abonnement sans appel de rendu si pas de changement
 const subscribeToNothing = () => () => {};
 
+/**
+ * Provider des favoris
+ * @param children - élément enfant auquel le provider doit fournir la liste des favoris
+ */
 export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
   const favorites = useSyncExternalStore(subscribeFavorite, getFavorites, getServerFavorites);
   const isReady = useSyncExternalStore(
