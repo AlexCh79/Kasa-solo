@@ -9,6 +9,7 @@ import { logoutAction } from "@/app/actions/auth";
 interface MobileMenuProps {
   isLoggedIn: boolean;
 }
+
 /**
  * Menu Mobile
  */
@@ -25,6 +26,7 @@ export default function MobileMenu({ isLoggedIn }: MobileMenuProps) {
         </Link>
         <button
           type="button"
+          aria-controls="mobile-menu"
           aria-expanded={isMenuOpen}
           aria-label={isMenuOpen ? "Fermer le menu" : "Ouvrir le menu"}
           className={styles.header__menuButton}
@@ -40,7 +42,7 @@ export default function MobileMenu({ isLoggedIn }: MobileMenuProps) {
         </button>
       </div>
       {isMenuOpen && (
-        <nav className={styles.header__navMobile}>
+        <nav className={styles.header__navMobile} id="mobile-menu">
           <ul className={styles.header__navList}>
             <li className={styles.header__navItem}>
               <Link href="/" className={styles.header__navLink} onClick={() => toggleMenu(false)}>
