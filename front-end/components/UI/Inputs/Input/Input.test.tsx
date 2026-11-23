@@ -8,6 +8,8 @@ function renderInput(props: Partial<ComponentProps<typeof Input>> = {}) {
   return render(<Input id="pseudo" label="Nom" {...props} />);
 }
 
+const handleChange = vi.fn();
+
 /**
  * Tests sur l'input personnalisé
  */
@@ -30,7 +32,6 @@ describe("Input", () => {
 
   // Si désactivé, l'input ne doit pas recevoir le focus ou de saisie et aucune fonction ne doit être appelée
   it("should be disabled if specified", async () => {
-    const handleChange = vi.fn();
     renderInput({ disabled: true, onChange: handleChange });
     const user = userEvent.setup();
     const input = screen.getByRole("textbox", { name: "Nom" });
@@ -42,7 +43,6 @@ describe("Input", () => {
 
   // L'utilisateur peut écrire dans l'input qui peut appeler onChange
   it("should be able to call onChange function when user types", async () => {
-    const handleChange = vi.fn();
     renderInput({ onChange: handleChange });
     const input = screen.getByRole("textbox", { name: "Nom" });
     const user = userEvent.setup();
@@ -53,5 +53,12 @@ describe("Input", () => {
     // onChange a été appelé et le texte de l'utilisateur est conservé
     expect(input).toHaveValue("Mon Logement");
     expect(handleChange).toHaveBeenCalledTimes(12); // "Mon Logement" = 12 caractères
+  });
+
+  // La valeur par défaut est affichée si renseignée
+  it("should render with default value if specified", () => {
+    renderInput({ defaultValue: "Logement" });
+    const input = screen.getByRole("textbox", { name: "Nom" });
+    expect(input).toHaveValue("Logement");
   });
 });
