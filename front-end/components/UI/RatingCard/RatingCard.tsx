@@ -6,6 +6,10 @@ interface RatingCardProps {
   rating: Rating;
 }
 
+/**
+ * Carte affichant l'avis d'un utilisateur
+ * @param rating - avis de l'utilisateur
+ */
 export default function RatingCard({ rating }: RatingCardProps) {
   return (
     <article className={styles.ratingCard}>
