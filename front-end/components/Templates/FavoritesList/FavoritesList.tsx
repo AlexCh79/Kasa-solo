@@ -33,7 +33,7 @@ export default function FavoritesList({ properties }: FavoritesListProps) {
           <p className={styles.favorites__subtitle}>
             Vous n&apos;avez aucun favori enregistré pour le moment.
           </p>
-          <Button href="/" label="Voir les logements" variant="primary" />
+          <Button href="/properties" label="Voir les logements" variant="primary" />
         </div>
       ) : (
         <PropertyGrid properties={list} />
