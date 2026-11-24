@@ -97,6 +97,15 @@ main {
     gap: 14px;
     width: 200px;
   }
+  &__link {
+    color: $main-red;
+    @include main-text;
+    text-decoration: none;
+    &:hover,
+    &:focus-visible {
+      text-decoration: underline;
+    }
+  }
 }
 
 .success {

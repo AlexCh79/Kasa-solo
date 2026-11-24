@@ -6,6 +6,7 @@ import { deleteCookie } from "@/utils/cookies";
 import { getCurrentUser, updateUser } from "@/lib/users";
 import type { UserRole } from "@/types/User";
 import { addImage } from "@/lib/uploads";
+import { ApiError } from "@/lib/api";
 
 interface ProfileValues {
   name: string;
@@ -73,6 +74,42 @@ export async function forgotAction(
 
   // Renvoi direct vers le lien incluant le token qui est normalement envoyé dans un email
   redirect(`/reset-password?token=${result.token}`);
+}
+
+/**
+ * Server Action permettant de réinitialiser le mot de passe utilisateur
+ * @param _prevState - état précédent (fourni par useActionState) - le type LoginState est conservé pour éviter un doublon
+ * @param formData - données du formulaire
+ * @returns un message d'erreur si la requête échoue
+ */
+export async function resetAction(_prevState: LoginState, formData: FormData): Promise<LoginState> {
+  const token = formData.get("token");
+  const password = formData.get("password");
+
+  // Vérification des données
+  if (!token || typeof token !== "string" || !password || typeof password !== "string") {
+    return { error: "Un nouveau mot de passe est obligatoire pour continuer." };
+  }
+  if (password.length < 6) {
+    return { error: "Le mot de passe doit contenir au moins 6 caractères." };
+  }
+
+  // Enregistrement du nouveau mot de passe
+  try {
+    await resetPassword(token, password);
+  } catch (error) {
+    return {
+      error:
+        error instanceof ApiError && error.status === 400
+          ? "Le lien est invalide ou a expiré. Faites une nouvelle demande."
+          : error instanceof Error
+            ? error.message
+            : "Réinitialisation impossible.",
+    };
+  }
+
+  // Redirection vers la page de connexion avec l'invitation à se connecter
+  redirect(`/login?reset=1`);
 }
 
 export interface RegisterState {

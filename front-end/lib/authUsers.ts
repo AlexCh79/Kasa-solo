@@ -58,9 +58,9 @@ export async function requestPassword(email: string): Promise<PasswordReset> {
  * Réinitialisation du mot de passe
  * @param token - token de l'utilisateur
  * @param password - nouveau mot de passe de l'utilisateur
- * @returns true si appel réussi
+ * @returns objet { ok: true } si l'appel réussit
  */
-export async function resetPassword(token: string, password: string) {
+export async function resetPassword(token: string, password: string): Promise<{ ok: boolean }> {
   const response = await fetchApi("/auth/reset-password", {
     method: "POST",
     body: JSON.stringify({ token, password }),

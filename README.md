@@ -179,8 +179,8 @@ Scores Lighthouse (navigation privée en local) :
 | À propos            | Bureau  | 100         | 100           | 100              | 100 |
 | Inscription         | Mobile  | 98          | 100           | 100              | 100 |
 | Inscription         | Bureau  | 100         | 100           | 100              | 100 |
-| Connexion           | Mobile  | 98          | 100           | 96               | 100 |
-| Connexion           | Bureau  | 100         | 100           | 96               | 100 |
+| Connexion           | Mobile  | 100         | 100           | 100              | 100 |
+| Connexion           | Bureau  | 100         | 100           | 100              | 100 |
 | Favoris             | Mobile  | 95          | 100           | 100              | 100 |
 | Favoris             | Bureau  | 100         | 100           | 100              | 100 |
 | Logements           | Mobile  | 96          | 100           | 100              | 100 |
@@ -196,7 +196,6 @@ Scores Lighthouse (navigation privée en local) :
 
 - Le faible score (54) du SEO sur la page 404 est attendu, s'agissant d'une page qui n'a pas vocation à être indexée sur un moteur de recherche, elle renvoie un statut 404. Le score des bonnes pratiques (96) s'explique par l'erreur 404 de la console, statut attendu de la page.
 - Les scores de performances les moins élevés sont principalement impactés par le chargement des images.
-- Le score des bonnes pratiques de la page de connexion (96) s'explique par le lien "Mot de passe oublié" qui pointe vers une page inexistante. Elle est en cours de réalisation.
 
 ## Utilisation de l'IA
 

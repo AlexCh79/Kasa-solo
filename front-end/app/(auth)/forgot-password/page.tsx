@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import ForgotPasswordForm from "@/components/Templates/Login/ForgotPasswordForm";
 
 /**
- * Metadonnées de la page
+ * Metadata de la page
  */
 export const metadata: Metadata = {
   title: "Mot de passe oublié | Kasa",
