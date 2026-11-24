@@ -1,7 +1,7 @@
 "use server";
-
+import type { PasswordReset } from "@/types/AuthUser";
 import { redirect } from "next/navigation";
-import { login, register } from "@/lib/authUsers";
+import { login, register, requestPassword, resetPassword } from "@/lib/authUsers";
 import { deleteCookie } from "@/utils/cookies";
 import { getCurrentUser, updateUser } from "@/lib/users";
 import type { UserRole } from "@/types/User";
@@ -38,6 +38,41 @@ export async function loginAction(_prevState: LoginState, formData: FormData): P
     return { error: error instanceof Error ? error.message : "Connexion impossible." };
   }
   redirect("/");
+}
+
+/**
+ * Server Action gérant la demande de lien sécurisé pour un nouveau mot de passe
+ * @param _prevState - état précédent (fourni par useActionState) - le type LoginState est conservé pour éviter un doublon
+ * @param formData - données du formulaire
+ * @returns un message d'erreur si la requête échoue
+ */
+export async function forgotAction(
+  _prevState: LoginState,
+  formData: FormData,
+): Promise<LoginState> {
+  const email = formData.get("email");
+
+  // Vérification de la donnée
+  if (typeof email !== "string" || !email) {
+    return { error: "Veuillez renseigner une adresse email valide." };
+  }
+
+  // Appel de l'API
+  let result: PasswordReset;
+
+  try {
+    result = await requestPassword(email);
+  } catch (error) {
+    return { error: error instanceof Error ? error.message : "Envoi impossible." };
+  }
+
+  // Info si le résultat revient sans le token
+  if (!result.token) {
+    return { error: "La réinitialisation du mot de passe n'est pas encore disponible." };
+  }
+
+  // Renvoi direct vers le lien incluant le token qui est normalement envoyé dans un email
+  redirect(`/reset-password?token=${result.token}`);
 }
 
 export interface RegisterState {

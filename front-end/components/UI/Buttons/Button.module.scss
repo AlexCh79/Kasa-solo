@@ -28,6 +28,11 @@ $secondary-color: $grey-light;
       transform: translateX(-4px);
     }
   }
+  &:disabled {
+    background-color: $grey-light;
+    color: $black;
+    cursor: not-allowed;
+  }
   &__icon {
     display: inline-flex;
     transition: transform 300ms ease-out;
