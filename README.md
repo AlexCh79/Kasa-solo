@@ -209,7 +209,8 @@ Règles données à l'agent IA :
 - Ne donner un bloc de code complet que sur sollicitation explicite (pistes et extraits de code),
 - Expliquer chaque ligne de code proposée,
 - Repérer les défauts d'accessibilité et erreurs TypeScript, ESLint, Prettier ou Vitest,
-- Lister les tests unitaires utiles à ne pas oublier.
+- Lister les tests unitaires utiles à ne pas oublier,
+- Propositions de code plus importantes pour la modification du back-end en Express avec explications ligne par ligne (pour l'ajout de la messagerie).
 
 Utilisation générale :
 
@@ -227,4 +228,6 @@ Utilisation générale :
 - Permettre la suppression ou l'archivage de message,
 - Permettre la suppression ou l'archivage de logement par son propriétaire,
 - Permettre la mise à jour d'un logement par son propriétaire (ne serait-ce que pour ajouter de nouvelles photos),
-- RGPD : Désactiver et anonymiser automatiquement les comptes utilisateurs sans connexion depuis X temps (un an par exemple).
+- RGPD : Désactiver et anonymiser automatiquement les comptes utilisateurs sans connexion depuis X temps (un an par exemple),
+- Ajouter une pastille à côté du logo de la messagerie dans le header pour informer l'utilisateur d'éventuels messages non lus (+ alerte par mail à sa réception),
+- Prévoir une interface de réservation autonome (le voyageur choisit ses dates et le serveur répond oui si aucune réservation sur des dates).
