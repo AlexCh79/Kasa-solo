@@ -6,13 +6,15 @@ import { PropertyBase } from "@/types/Property";
 
 interface PropertyCardProps {
   property: PropertyBase;
+  isPriority?: boolean;
 }
 
 /**
  * Carte de présentation d'un logement
  * @param property - propriété à afficher sur la carte
+ * @param isPriority - true s'il s'agit de la première carte de logement à afficher pour charger son image de couverture en priorité
  */
-export default function PropertyCard({ property }: PropertyCardProps) {
+export default function PropertyCard({ property, isPriority = false }: PropertyCardProps) {
   return (
     <article className={styles.card}>
       <Link href={`/properties/${property.id}`} className={styles.card__link}>
@@ -22,6 +24,8 @@ export default function PropertyCard({ property }: PropertyCardProps) {
             fill
             sizes="(min-width: 768px) 355px, 100vw"
             alt=""
+            fetchPriority={isPriority ? "high" : "auto"}
+            loading={isPriority ? "eager" : "lazy"}
             className={styles.card__cover}
           />
         </div>

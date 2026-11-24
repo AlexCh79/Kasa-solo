@@ -36,7 +36,8 @@ export default function Carrousel({ images, title }: CarrouselProps) {
           className={styles.carrousel__main}
           fill
           sizes="(min-width: 1280px) 303px, 358px"
-          preload
+          fetchPriority="high"
+          loading="eager"
           alt={
             total > 0
               ? `${title}, photo ${currentIndex + 1} sur ${total}`

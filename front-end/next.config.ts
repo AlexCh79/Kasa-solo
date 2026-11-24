@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
       new URL("https://s3-eu-west-1.amazonaws.com/**"),
       new URL("http://localhost:3000/uploads/**"),
     ],
-    dangerouslyAllowLocalIP: process.env.NODE_ENV === "development",
+    dangerouslyAllowLocalIP: process.env.API_URL?.startsWith("http://localhost") ?? false,
   },
 };
 

@@ -14,8 +14,8 @@ export default function PropertyGrid({ properties }: PropertyGridProps) {
   return (
     <div className={styles.list}>
       <section className={styles.list__container}>
-        {properties.map((property) => (
-          <PropertyCard key={property.id} property={property} />
+        {properties.map((property, index) => (
+          <PropertyCard key={property.id} property={property} isPriority={index === 0} />
         ))}
       </section>
     </div>
