@@ -15,6 +15,7 @@ Ce projet a été réalisé dans le cadre d'une formation avec OpenClassrooms (D
 9. [Tests](#tests)
 10. [Accessibilité](#accessibilité)
 11. [Utilisation de l'IA](#utilisation-de-lia)
+12. [Améliorations possibles](#améliorations-possibles)
 
 ## Description et fonctionnalités
 
@@ -43,6 +44,7 @@ Pour faciliter les tests manuels du site et la cohérence du projet, plusieurs f
 
 - Ajout et consultation des avis utilisateurs (afin de permettre d'alimenter la base de données des avis et des notes),
 - Page de profil de l'utilisateur connecté (afin de permettre de changer l'utilisateur du statut "client" à celui de "owner").
+- Mot de passe oublié et réinitialisation : le formulaire est prêt à l'emploi selon les routes existantes dans l'API. L'envoi d'email n'est pas encore développé dans le back-end, l'envoi est donc simulé en redirigeant l'utilisateur directement sur la page de réinitialisation depuis la page de demande de réinitialisation.
 
 ## Prérequis
 
@@ -214,3 +216,15 @@ Utilisation générale :
 - L'humain code d'abord, l'IA relit ensuite (lecture du code et vérification des erreurs en lecture seule),
 - Vérification des pistes proposées et recentrage sur les attentes du projet,
 - Choix fonctionnels laissés à l'appréciation humaine : gestion des redirections, ajout d'une page de profil, gestion des fonctionnalités selon les routes de l'API fournie (seule la messagerie précise que le back-end peut être modifié).
+
+## Améliorations possibles
+
+- Réinitialisation du mot de passe : demander à l'utilisateur de confirmer son nouveau mot de passe par une seconde saisie,
+- Ajouter la possibilité de déposer un avis pour le logement et un autre pour l'hôte,
+- Développez l'interface "admin" permettant la création d'un nouveau compte "admin", l'ajout de nouveau équipements, etc.,
+- Intégrer une table dans la base de données pour gérer les catégories et les équipements (actuellement dans une liste fixe),
+- Connecter la page d'ajout de logement à une API publique pour récupérer la commune (et le déparetement) en fonction du code postal renseigné,
+- Permettre la suppression ou l'archivage de message,
+- Permettre la suppression ou l'archivage de logement par son propriétaire,
+- Permettre la mise à jour d'un logement par son propriétaire (ne serait-ce que pour ajouter de nouvelles photos),
+- RGPD : Désactiver et anonymiser automatiquement les comptes utilisateurs sans connexion depuis X temps (un an par exemple).
