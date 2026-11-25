@@ -10,3 +10,12 @@ export function toLocalDate(date: string): string {
     year: "numeric",
   });
 }
+
+/**
+ * Conversion d'une date SQLite (UTC sans fuseau) au format ISO 8601
+ * @param date - date au format "AAAA-MM-JJ HH:MM:SS"
+ * @returns date au format "AAAA-MM-JJTHH:MM:SSZ"
+ */
+export function toIsoUtc(date: string): string {
+  return `${date.replace(" ", "T")}Z`;
+}
