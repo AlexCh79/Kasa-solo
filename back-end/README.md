@@ -57,7 +57,7 @@ Sauvegarde: le fichier SQLite (data/kasa.sqlite3) est persistant. Pour repartir 
 - Spécification: public/openapi.json
 - UI de test/exploration: http://localhost:3000/docs.html (après démarrage)
 
-Les endpoints sont groupés par tags: Auth, Properties, Users, Ratings, Favorites, Uploads. Les schémas de requête/réponse sont détaillés dans la spec.
+Les endpoints sont groupés par tags: Auth, Properties, Users, Ratings, Favorites, Uploads, Messenger. Les schémas de requête/réponse sont détaillés dans la spec.
 
 ## Authentification & rôles
 - Authentification: JWT via l’en-tête Authorization: Bearer <token>.
@@ -94,6 +94,11 @@ Base: /api
 
 - POST /api/uploads/image: uploader une image (rôle: owner ou admin). Répond avec une URL publique /uploads/... et des instructions pour l’utiliser (cover, gallery, etc.).
 - DELETE /api/uploads/images: supprimer une ou plusieurs images (rôle: owner ou admin). Accepte des noms de fichiers ou des URLs; nettoie les références en base.
+
+- GET /api/conversations: liste ses conversations, avec l'interlocuteur, l'aperçu du dernier message et une information visuelle pour les messages non lus (utilisateur connecté)
+- POST /api/conversations: retrouver ou créer une nouvelle conversation avec un hôte, body { host_id } (utilisateur connecté)
+- GET /api/conversations/:id/messages: lister les message d'une conversation avec l'interlocuteur et marque les messages reçus comme lus (utilisateur connecté)
+- POST /api/conversations/:id/messages: envoyer un message, body { content }, 2000 caractères maximum (utilisateur connecté)
 
 ## Upload & suppression d’images
 - Dossier public: public/uploads (servi statiquement par Express)
