@@ -15,7 +15,8 @@
     { "name": "Users" },
     { "name": "Ratings" },
     { "name": "Favorites" },
-    { "name": "Uploads" }
+    { "name": "Uploads" },
+    { "name": "Messenger"}
   ],
   "paths": {
     "/auth/register": {
@@ -362,6 +363,70 @@
           "403": { "description": "Interdit (owner ou admin seulement)", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } }
         }
       }
+    },
+    "/api/conversations": {
+      "get": {
+        "tags": ["Messenger"],
+        "summary": "List conversations of the current user (most recent first)",
+        "security": [{ "BearerAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Array of conversations with the other participant, last message and unread count",
+            "content": { "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Conversation" }}}}
+          },
+          "401": {
+            "description": "Authentication required", "content": { "application/json":{ "schema": { "$ref": "#/components/schemas/Error" }}}
+          }
+        }
+      },
+      "post": {
+        "tags": ["Messenger"],
+        "summary": "Find or create the conversation between the current user (guest) and a host", 
+        "description": "Only one conversation exists per pair of users, whatever the direction (guest/host).",
+        "security": [{ "BearerAuth":[] }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json":{ "schema": { "$ref": "#/components/schemas/ConversationCreate" } } }
+        },
+        "responses": {
+          "200": { "description": "Existing or created conversation id", "content": { "application/json":{ "schema": { "$ref": "#/components/schemas/ConversationRef" } } } },
+          "400": { "description": "host_id missing or invalid, or conversation with yourself", "content": { "application/json":{ "schema": { "$ref": "#/components/schemas/Error" } } } },
+          "401": { "description": "Authentication required", "content": { "application/json":{ "schema": { "$ref": "#/components/schemas/Error" } } } },
+          "404": { "description": "User not found", "content": { "application/json":{ "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
+    },
+    "/api/conversations/{id}/messages": {
+      "get":{
+        "tags": ["Messenger"],
+        "summary": "List messages of a conversation (oldest first) and mark received messages as read",
+        "security": [{ "BearerAuth":[] }],
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "responses": {
+          "200": { "description": "Array of messages", "content": { "application/json": { "schema": { "type": "array", "items": { "$ref": "#/components/schemas/Message" } } } } },
+          "400": { "description": "Invalid conversation id", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } },
+          "401": { "description": "Authentication required", "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Error" } } } },
+          "403": { "description": "Forbidden (participants only)", "content": { "application/json":{ "schema": { "$ref":"#/components/schemas/Error" } } } },
+          "404": { "description": "Conversation not found", "content": { "application/json":{ "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      },
+      "post": {
+        "tags": ["Messenger"],
+        "summary": "Send a message in a conversation",
+        "security": [{ "BearerAuth":[] }],
+        "parameters": [{ "name": "id", "in": "path", "required": true, "schema": { "type": "integer" } }],
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/MessageCreate" } } }
+        },
+        "responses": {
+          "201": { "description": "Created message", "content": { "application/json":{ "schema": { "$ref": "#/components/schemas/Message" } } } },
+          "400": { "description": "Invalid conversation id, content missing or too long", "content": { "application/json":{ "schema": { "$ref": "#/components/schemas/Error" } } } },
+          "401": { "description": "Authentication required", "content": { "application/json":{ "schema": { "$ref": "#/components/schemas/Error" } } } },
+          "403": { "description": "Forbidden access (participants only)", "content": { "application/json":{ "schema": { "$ref": "#/components/schemas/Error" } } } },
+          "404": { "description": "Conversation not found", "content": { "application/json":{ "schema": { "$ref": "#/components/schemas/Error" } } } }
+        }
+      }
     }
   },
   "components": {
@@ -548,6 +613,52 @@
           "instructions": { "type": "string", "description": "Human-readable guidance on how to use the uploaded image URL next" }
         },
         "required": ["url"]
+      },
+      "Conversation": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "updated_at": { "type":"string", "description": "Date of the last message (UTC, SQLite format)" },
+          "last_message": { "type": "string", "nullable": true },
+          "unread_count": { "type": "integer", "description": "Messages received by the current user and not read yet" },
+          "other_user": {
+            "type": "object",
+            "properties": {
+              "id": { "type": "integer" },
+              "name": { "type": "string" },
+              "picture": { "type": "string", "nullable": true }
+            },
+            "required": ["id", "name"]
+          }
+        },
+        "required": ["id", "updated_at", "unread_count", "other_user"]
+      },
+      "ConversationCreate": {
+        "type": "object",
+        "properties": { "host_id": { "type": "integer" } },
+        "required": ["host_id"]
+      },
+      "ConversationRef": {
+        "type": "object",
+        "properties": { "id": { "type": "integer" } },
+        "required": ["id"]
+      },
+      "Message": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer" },
+          "conversation_id": { "type": "integer" },
+          "sender_id": { "type": "integer" },
+          "content": { "type": "string" },
+          "created_at": { "type": "string", "description": "UTC, SQLite format" },
+          "read_at": { "type": "string", "nullable": true, "description": "null while not read by the recipient" }
+        },
+        "required": ["id", "conversation_id", "sender_id", "content", "created_at"]
+      },
+      "MessageCreate": {
+        "type": "object",
+        "properties": { "content": { "type": "string", "minLength": 1, "maxLength": 2000 } },
+        "required": ["content"]
       }
     }
   }

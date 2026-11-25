@@ -95,9 +95,9 @@ Base: /api
 - POST /api/uploads/image: uploader une image (rôle: owner ou admin). Répond avec une URL publique /uploads/... et des instructions pour l’utiliser (cover, gallery, etc.).
 - DELETE /api/uploads/images: supprimer une ou plusieurs images (rôle: owner ou admin). Accepte des noms de fichiers ou des URLs; nettoie les références en base.
 
-- GET /api/conversations: liste ses conversations, avec l'interlocuteur, l'aperçu du dernier message et une information visuelle pour les messages non lus (utilisateur connecté)
+- GET /api/conversations: liste ses conversations, avec l'interlocuteur, l'aperçu du dernier message et le nombre de messages non lus (utilisateur connecté)
 - POST /api/conversations: retrouver ou créer une nouvelle conversation avec un hôte, body { host_id } (utilisateur connecté)
-- GET /api/conversations/:id/messages: lister les message d'une conversation avec l'interlocuteur et marque les messages reçus comme lus (utilisateur connecté)
+- GET /api/conversations/:id/messages: lister les messages d'une conversation avec l'interlocuteur et marquer les messages reçus comme lus (utilisateur connecté)
 - POST /api/conversations/:id/messages: envoyer un message, body { content }, 2000 caractères maximum (utilisateur connecté)
 
 ## Upload & suppression d’images
