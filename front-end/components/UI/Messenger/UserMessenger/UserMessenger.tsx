@@ -1,4 +1,3 @@
-"use client";
 import styles from "./UserMessenger.module.scss";
 import Image from "next/image";
 import Link from "next/link";
@@ -43,7 +42,9 @@ export default function UserMessenger({ conversation }: UserMessengerProps) {
                 <span className={styles.user__contactPreview}>{message} </span>
               </div>
               <div className={styles.user__contactTimerWrapper}>
-                <time className={styles.user__contactTimer}>{time}</time>
+                <time className={styles.user__contactTimer} dateTime={conversation.updatedAt}>
+                  {time}
+                </time>
                 {conversation.unreadCount > 0 && <span className={styles.user__unread}></span>}
               </div>
             </div>

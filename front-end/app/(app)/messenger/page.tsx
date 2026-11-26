@@ -8,7 +8,7 @@ import { getConversations } from "@/lib/messages";
  * Metadata de la page
  */
 export const metadata: Metadata = {
-  title: "Messagerie",
+  title: "Messagerie | Kasa",
 };
 
 /**

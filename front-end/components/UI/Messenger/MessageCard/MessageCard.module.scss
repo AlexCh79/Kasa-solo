@@ -1,0 +1,8 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.message {
+  display: inline-flex;
+  gap: 6px;
+  width: 100%;
+}
