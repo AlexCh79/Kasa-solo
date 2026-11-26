@@ -168,3 +168,26 @@ export const CrossIcon = ({ size = 9, className }: IconProps) => (
     <path d="M.179.178a.608.608 0 0 1 .861 0L4.505 3.642 7.968.179a.609.609 0 0 1 .862.862L5.366 4.504 8.83 7.967a.609.609 0 1 1-.862.862L4.505 5.364 1.04 8.829a.609.609 0 1 1-.861-.861L3.643 4.503.179 1.039a.608.608 0 0 1 0-.861Z" />
   </svg>
 );
+
+/**
+ * Flèche vers le haut (envoi d'un message). Prend la couleur de texte de son parent.
+ */
+export const ArrowUpIcon = ({ size = 14, className }: IconProps) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 14 14"
+    fill="none"
+    aria-hidden="true"
+    focusable="false"
+    className={className}
+  >
+    <path
+      d="M7 12.5V1.5M7 1.5L2.5 6M7 1.5L11.5 6"
+      stroke="currentColor"
+      strokeWidth={1.5}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

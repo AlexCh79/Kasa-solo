@@ -34,5 +34,12 @@ export default async function Conversation({ params }: PageProps<"/messenger/[id
     throw error;
   }
 
-  return <ConversationPage messages={messages} other={other} user={user} />;
+  return (
+    <ConversationPage
+      messages={messages}
+      other={other}
+      user={user}
+      conversationId={conversation.id}
+    />
+  );
 }

@@ -5,18 +5,33 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  &__buttonWrapper {
+    padding: 0 8px;
+    width: 100%;
+    background-color: $white;
+  }
+  &__buttonZone {
+    max-width: 93px;
+  }
+  &__empty {
+    @include main-text;
+    color: $grey-dark;
+    text-align: center;
+    padding: 0 10px;
+  }
   &__messages {
+    padding: 40px 8px;
+    gap: 24px;
     display: flex;
     width: 100%;
     flex-direction: column;
-    padding: 40px 8px;
-    gap: 24px;
+    list-style: none;
   }
   &__writerZone {
     display: flex;
+    border-top: 1px solid $grey-light;
     flex-direction: column;
     width: 100%;
-    border-top: 1px solid $grey-light;
     background-color: $white;
     gap: 10px;
     padding: 21px 30px;

@@ -2,7 +2,76 @@
 @use "@/styles/mixins" as *;
 
 .message {
-  display: inline-flex;
+  display: flex;
+  align-items: center;
   gap: 6px;
   width: 100%;
+  &__userSender {
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+  }
+  &__otherSender {
+    justify-content: flex-start;
+    flex-direction: row;
+  }
+  &__coverWrapper {
+    overflow: hidden;
+    width: 28px;
+    height: 28px;
+    aspect-ratio: 28/28;
+    background-color: $grey-dark;
+    border-radius: 6px;
+  }
+  &__cover {
+    object-fit: cover;
+    object-position: center;
+    flex: 1;
+  }
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+  }
+  &__userSenderBody {
+    align-items: flex-end;
+  }
+  &__otherSenderBody {
+    align-items: flex-start;
+  }
+  &__header {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: $grey-dark;
+    font-size: $size-little;
+    font-weight: 400;
+  }
+  &__headerPoint {
+    background-color: $grey-dark;
+    border-radius: 50%;
+    width: 4px;
+    height: 4px;
+  }
+  &__contentWrapper {
+    display: inline-flex;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    max-width: 273px;
+  }
+  &__userSenderContentWrapper {
+    background-color: $main-red;
+    border-radius: 20px 0 20px 20px;
+    color: white;
+  }
+  &__otherSenderContentWrapper {
+    background-color: $white;
+    border-radius: 0 20px 20px 20px;
+    color: $black;
+  }
+  &__content {
+    @include main-text;
+  }
 }

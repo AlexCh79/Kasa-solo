@@ -1,0 +1,51 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.messageInput {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  background-color: $white;
+  width: 100%;
+  &__wrapper {
+    display: inline-flex;
+    justify-content: space-between;
+    border: 1px solid $grey-light;
+    border-radius: 10px;
+    width: 100%;
+    padding: 4px;
+    gap: 4px;
+    &:focus-within {
+      outline: 2px solid $main-red;
+    }
+  }
+  &__input {
+    color: $black;
+    font-size: $size-little;
+    font-weight: 400;
+    border: none;
+    width: 100%;
+    border-radius: 10px;
+    padding: 0 8px;
+    outline: none;
+  }
+  &__button {
+    background-color: $main-red;
+    cursor: pointer;
+    color: $white;
+    vertical-align: middle;
+    text-align: center;
+    border-radius: 5px;
+    height: 32px;
+    width: 32px;
+    outline: none;
+    border: none;
+    &:disabled {
+      cursor: not-allowed;
+      background-color: $grey-light;
+      color: $black;
+    }
+  }
+}
