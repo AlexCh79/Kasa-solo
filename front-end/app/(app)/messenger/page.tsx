@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { getCurrentUser } from "@/lib/users";
+import { getSession } from "@/lib/users";
 import { redirect } from "next/navigation";
 import MessengerPage from "@/components/Templates/MessengerPage/MessengerPage";
+import { getConversations } from "@/lib/messages";
 
 /**
  * Metadata de la page
@@ -15,7 +16,9 @@ export const metadata: Metadata = {
  * Redirection vers la page de connexion si l'utilisateur n'est pas connecté
  */
 export default async function Messenger() {
-  const user = await getCurrentUser();
-  if (!user) redirect("/login");
-  return <MessengerPage />;
+  const userId = await getSession();
+  if (!userId) redirect("/login");
+
+  const conversations = await getConversations();
+  return <MessengerPage conversations={conversations} />;
 }

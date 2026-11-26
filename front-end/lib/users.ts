@@ -67,7 +67,7 @@ export async function getSession() {
 
 /**
  * Lit l'id utilisateur depuis le token pour savoir s'il est connecté et s'il est propriétaire
- * @returns l'utilisateur connecté, null si pas de
+ * @returns l'utilisateur connecté, null si pas de token enregistré en cookie
  */
 export async function getCurrentUser() {
   try {

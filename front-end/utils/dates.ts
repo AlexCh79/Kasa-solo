@@ -19,3 +19,19 @@ export function toLocalDate(date: string): string {
 export function toIsoUtc(date: string): string {
   return `${date.replace(" ", "T")}Z`;
 }
+
+/**
+ * Conversion d'une date SQLite en heure, cycle de 12 heures pour intégrer le format AM/PM de la maquette
+ * @param date - date à formater
+ * @returns heure au format "HH:MM am", fuseau horaire de Paris
+ */
+export function toHours(date: string): string {
+  return new Date(date)
+    .toLocaleTimeString("fr-FR", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hourCycle: "h12",
+      timeZone: "Europe/Paris",
+    })
+    .toLocaleLowerCase();
+}

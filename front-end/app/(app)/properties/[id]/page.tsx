@@ -10,6 +10,7 @@ import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ApiError } from "@/lib/api";
 import FavButton from "@/components/UI/Buttons/FavoriteButton/FavButton";
+import HostCard from "@/components/UI/HostCard/HostCard";
 
 /**
  * Génération des métadatas de la page en fonction du logement
@@ -82,38 +83,7 @@ export default async function PropertyPage({ params }: PageProps<"/properties/[i
           </div>
         </div>
       </div>
-      <div className={styles.host}>
-        <h2 className={styles.host__Title}>Votre hôte</h2>
-        <div className={styles.host__Container}>
-          <div className={styles.host__coverWrapper}>
-            <Image
-              src={property.host.picture}
-              width={81}
-              height={82}
-              className={styles.host__cover}
-              alt={`Photo de votre hôte ${property.host.name}`}
-            />
-          </div>
-          <span className={styles.host__name}>{property.host.name}</span>
-          <div className={styles.host__ratingWrapper}>
-            <Image
-              src="/icon_star.svg"
-              width={19}
-              height={23}
-              alt="Note moyenne du logement sur 5"
-            />
-            <span className={styles.host__rating}>
-              {property.ratingAvg.toLocaleString("fr-FR", { maximumFractionDigits: 1 })}
-            </span>
-          </div>
-        </div>
-        <Button label="Contacter l'hôte" variant="primary" href="/messenger" />
-        <Button
-          label="Voir les avis"
-          variant="primary"
-          href={`/properties/${property.id}/ratings`}
-        />
-      </div>
+      <HostCard property={property} />
     </div>
   );
 }

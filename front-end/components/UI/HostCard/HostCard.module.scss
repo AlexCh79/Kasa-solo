@@ -1,0 +1,54 @@
+@use "@/styles/variables" as *;
+@use "@/styles/mixins" as *;
+
+.host {
+  display: flex;
+  grid-area: host;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 10px;
+  background-color: $white;
+  border: 1px solid $grey-light;
+  gap: 8px;
+  padding: 24px;
+  &__Title {
+    font-weight: 500;
+    font-size: $size-h4;
+  }
+  &__Container {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    padding: 16px 0;
+  }
+  &__coverWrapper {
+    width: 81px;
+    height: 82px;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    aspect-ratio: 81/82;
+  }
+  &__cover {
+    object-fit: cover;
+    object-position: center;
+  }
+  &__name {
+    font-weight: 400;
+    font-size: $size-h4;
+  }
+  &__ratingWrapper {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 10px;
+    background-color: $grey-light;
+    gap: 4px;
+    padding: 8px;
+    width: 100%;
+    max-width: 50px;
+  }
+  &__rating {
+    font-weight: 400;
+    font-size: $size-h4;
+  }
+}

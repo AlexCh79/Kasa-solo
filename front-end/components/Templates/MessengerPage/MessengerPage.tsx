@@ -2,11 +2,16 @@ import styles from "./MessengerPage.module.scss";
 import Button from "@/components/UI/Buttons/Button";
 import { ArrowLeftIcon } from "@/components/UI/Icons/Icons";
 import UserMessenger from "@/components/UI/Messenger/UserMessenger";
+import type { Conversation } from "@/types/Message";
+
+interface MessengerPageProps {
+  conversations: Conversation[] | null;
+}
 
 /**
  * Page de la messagerie
  */
-export default function MessengerPage() {
+export default function MessengerPage({ conversations }: MessengerPageProps) {
   return (
     <section className={styles.messenger}>
       <div className={styles.messenger__return}>
@@ -17,7 +22,15 @@ export default function MessengerPage() {
           <h1 className={styles.messenger__title}>Messages</h1>
         </div>
         <div className={styles.messenger__usersWrapper}>
-          <UserMessenger />
+          {conversations ? (
+            conversations.map((conversation) => (
+              <UserMessenger key={conversation.id} conversation={conversation} />
+            ))
+          ) : (
+            <p className={styles.messenger__empty}>
+              Vous n&apos;avez conversé avec personne pour le moment.
+            </p>
+          )}
         </div>
       </div>
     </section>
